@@ -8,10 +8,8 @@
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "express": "^4.14.0"
-  },
   "dependencies": {
-    "mysql": "^2.11.1"
+    "express": "^4.14.0",
+    "node-mysql-wrapper": "^2.9.3"
   }
 }

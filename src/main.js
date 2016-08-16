@@ -11,7 +11,6 @@ app.use(function(req, res, next) {
 });
 
 app.get('/', function (req, res) {
-
   connection.getItems(function(errors, results){
     res.send(results);
   });

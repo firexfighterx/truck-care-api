@@ -1,5 +1,5 @@
 var express = require('express');
-var connection = require('./database/connection');
+var connection = require('./database/truckCareDatabase');
 var app = express();
 
 
@@ -19,5 +19,5 @@ app.get('/', function (req, res) {
 
 
 app.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
+  console.log('Truck Care API listening on port 3000');
 });

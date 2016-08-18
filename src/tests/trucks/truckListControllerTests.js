@@ -1,7 +1,7 @@
 var assert = require('assert');
 var sinon = require('sinon');
-var truckCareDatabase = require('../../database/truckCareDatabase');
-var truckListCallbackHandlers = require('../../trucks/TruckListCallbackHandlers');
+var TruckCareDatabase = require('../../database/TruckCareDatabase');
+var TruckListCallbackHandlers = require('../../trucks/TruckListCallbackHandlers');
 var controller = require('../../trucks/TruckListController');
 
 describe('truckListController', function() {
@@ -20,8 +20,8 @@ describe('truckListController', function() {
             var req = {};
             var res = {};
 
-            var getAllTrucksHandler = sandbox.stub(truckListCallbackHandlers, 'getAllTrucksHandler');
-            var getItems = sandbox.stub(truckCareDatabase, 'getItems');
+            var getAllTrucksHandler = sandbox.stub(TruckListCallbackHandlers, 'getAllTrucksHandler');
+            var getItems = sandbox.stub(TruckCareDatabase, 'getAllTrucks');
 
             controller.getAllTrucks(req, res);
 

@@ -10,7 +10,7 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.use('/', require('./trucks/truckList'));
+app.use('/', require('./trucks/truckListRoutes'));
 
 
 

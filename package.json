@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "gulp"
+    "start": "gulp",
+    "test": "mocha src/tests/**/*Tests.js"
   },
   "author": "",
   "license": "ISC",
@@ -13,6 +14,7 @@
     "node-mysql-wrapper": "^2.9.3"
   },
   "devDependencies": {
+    "assert": "^1.4.1",
     "gulp": "^3.9.1",
     "gulp-nodemon": "^2.1.0",
     "mocha": "^3.0.2",

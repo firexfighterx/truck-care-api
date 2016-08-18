@@ -5,8 +5,9 @@ var truckCareDatabase = require('../database/truckCareDatabase');
 
 module.exports = router;
 
-router.get('/', function (req, res) {
+router.get('/trucks/all', function (req, res) {
   truckCareDatabase.getItems(function(errors, results){
+    res.statusCode = 200;
     res.send(results);
   });
 });

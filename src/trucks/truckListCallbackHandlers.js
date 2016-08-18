@@ -1,10 +1,10 @@
 var handlers = {};
 
-handlers.getAllTrucksHandler = function(req, res, errors, results) {
-
+handlers.getAllTrucksHandler = function(res, errors, results) {
     var responseCode;
     var items;
-    if (!errors) {
+
+    if (errors !== null) {
         items = [];
         statusCode = 500;
     } else {

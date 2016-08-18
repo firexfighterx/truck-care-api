@@ -22,7 +22,7 @@ describe('truckListCallbackHandlers', function() {
             };
             var results = ['testing'];
 
-            TruckListCallbackHandlers.getAllTrucksHandler({}, res, {}, results);
+            TruckListCallbackHandlers.getAllTrucksHandler(res, null, results);
 
             assert.strictEqual(actualResult, results, 'called send function sending back results');
             assert.strictEqual(res.statusCode, 200, 'send status was set to 200');
@@ -39,7 +39,7 @@ describe('truckListCallbackHandlers', function() {
             var results = ['testing'];
             var errorArray = []
 
-            TruckListCallbackHandlers.getAllTrucksHandler({}, res, null, results);
+            TruckListCallbackHandlers.getAllTrucksHandler(res, {}, results);
 
             assert.strictEqual(actualResult.count, errorArray.count, 'called send function sending back results');
             assert.strictEqual(res.statusCode, 500, 'send status was set to 500');

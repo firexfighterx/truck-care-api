@@ -25,7 +25,7 @@ describe('truckListController', function() {
 
             controller.getAllTrucks(req, res);
 
-            assert(getItems.withArgs(getAllTrucksHandler).calledOnce, 'called truck care database get items');
+            assert(getItems.calledOnce, 'called truck care database get items');
         });
     });
 

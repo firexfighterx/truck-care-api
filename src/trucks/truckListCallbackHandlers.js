@@ -1,8 +1,18 @@
 var handlers = {};
 
-handlers.getAllTrucksHandler = function(errors, results){
-  // res.statusCode = 200;
-  // res.send(results);
+handlers.getAllTrucksHandler = function(req, res, errors, results) {
+
+    var responseCode;
+    var items;
+    if (!errors) {
+        items = [];
+        statusCode = 500;
+    } else {
+        statusCode = 200;
+        items = results;
+    }
+    res.statusCode = statusCode;
+    res.send(items);
 };
 
 module.exports = handlers;

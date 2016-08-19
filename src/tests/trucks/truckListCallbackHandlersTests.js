@@ -37,7 +37,7 @@ describe('truckListCallbackHandlers', function() {
                 }
             };
             var results = ['testing'];
-            var errorArray = []
+            var errorArray = [];
 
             TruckListCallbackHandlers.getAllTrucksHandler(res, {}, results);
 

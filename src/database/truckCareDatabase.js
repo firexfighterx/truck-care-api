@@ -5,5 +5,5 @@ var truckCareDatabase = {};
 
 truckCareDatabase.getAllTrucks = function(getAllTrucksCallback) {
     db.query('select * from trucks', getAllTrucksCallback);
-}
+};
 module.exports = truckCareDatabase;

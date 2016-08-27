@@ -1,26 +1,26 @@
-var assert = require('assert');
-var sinon = require('sinon');
-var TruckListCallbackHandlers = require('../../trucks/TruckListCallbackHandlers');
+import assert from 'assert';
+import sinon from 'sinon';
+import TruckListCallbackHandlers from '../../trucks/TruckListCallbackHandlers';
 
-describe('truckListCallbackHandlers', function() {
-    var sandbox;
-    beforeEach(function() {
+describe('truckListCallbackHandlers', () => {
+    let sandbox;
+    beforeEach(() => {
         sandbox = sinon.sandbox.create();
     });
 
-    afterEach(function() {
+    afterEach(() => {
         sandbox.restore();
     });
 
-    describe('getAllTrucksHandler', function() {
-        it('sends the database results with a successful database call', function() {
-            var actualResult;
-            var res = {
-                send: function(results) {
+    describe('getAllTrucksHandler', () => {
+        it('sends the database results with a successful database call', () => {
+            let actualResult;
+            let res = {
+                send: (results) => {
                     actualResult = results;
                 }
             };
-            var results = ['testing'];
+            let results = ['testing'];
 
             TruckListCallbackHandlers.getAllTrucksHandler(res, null, results);
 
@@ -29,15 +29,15 @@ describe('truckListCallbackHandlers', function() {
 
         });
 
-        it('sends empty list with errors', function() {
-            var actualResult;
-            var res = {
-                send: function(results) {
+        it('sends empty list with errors', () => {
+            let actualResult;
+            let res = {
+                send: (results) => {
                     actualResult = results;
                 }
             };
-            var results = ['testing'];
-            var errorArray = [];
+            let results = ['testing'];
+            let errorArray = [];
 
             TruckListCallbackHandlers.getAllTrucksHandler(res, {}, results);
 

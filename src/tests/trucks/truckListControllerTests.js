@@ -1,29 +1,29 @@
-var assert = require('assert');
-var sinon = require('sinon');
-var TruckCareDatabase = require('../../database/TruckCareDatabase');
-var TruckListCallbackHandlers = require('../../trucks/TruckListCallbackHandlers');
-var controller = require('../../trucks/TruckListController');
+import assert from 'assert';
+import sinon from 'sinon';
+import TruckCareDatabase from '../../database/TruckCareDatabase';
+import TruckListCallbackHandlers from '../../trucks/TruckListCallbackHandlers';
+import TruckListController from '../../trucks/TruckListController';
 
-describe('truckListController', function() {
-    var sandbox;
-    beforeEach(function() {
+describe('truckListController', () => {
+    let sandbox;
+    beforeEach(() => {
         sandbox = sinon.sandbox.create();
     });
 
-    afterEach(function() {
+    afterEach(() => {
         sandbox.restore();
     });
 
-    describe('getAllTrucks', function() {
-        it('calls truck care database to get all trucks', function() {
+    describe('getAllTrucks', () => {
+        it('calls truck care database to get all trucks', () => {
 
-            var req = {};
-            var res = {};
+            let req = {};
+            let res = {};
 
-            var getAllTrucksHandler = sandbox.stub(TruckListCallbackHandlers, 'getAllTrucksHandler');
-            var getItems = sandbox.stub(TruckCareDatabase, 'getAllTrucks');
+            let getAllTrucksHandler = sandbox.stub(TruckListCallbackHandlers, 'getAllTrucksHandler');
+            let getItems = sandbox.stub(TruckCareDatabase, 'getAllTrucks');
 
-            controller.getAllTrucks(req, res);
+            TruckListController.getAllTrucks(req, res);
 
             assert(getItems.calledOnce, 'called truck care database get items');
         });

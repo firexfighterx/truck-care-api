@@ -1,11 +1,13 @@
-var TruckCareDatabase = require('../database/TruckCareDatabase');
-var truckListCallbackHandlers = require('../trucks/TruckListCallbackHandlers');
-var controller = {};
+import TruckCareDatabase from '../database/TruckCareDatabase';
+import TruckListCallbackHandlers from '../trucks/TruckListCallbackHandlers';
 
-controller.getAllTrucks = function(req, res) {
-    TruckCareDatabase.getAllTrucks(function(errors, results) {
-        truckListCallbackHandlers.getAllTrucksHandler(res, errors, results);
-    });
-};
+class TruckListController {
+    getAllTrucks(req, res) {
+        TruckCareDatabase.getAllTrucks((errors, results) => {
+            TruckListCallbackHandlers.getAllTrucksHandler(res, errors, results);
+        });
+    }
+}
 
-module.exports = controller;
+
+export default new TruckListController();

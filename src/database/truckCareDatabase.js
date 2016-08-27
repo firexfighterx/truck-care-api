@@ -1,9 +1,12 @@
-var wrapper = require('node-mysql-wrapper');
-var db = wrapper.wrap("mysql://trucks:FireDepartment2400@127.0.0.1/TruckCare?debug=false&charset=utf8");
+import {
+    wrap
+} from "node-mysql-wrapper";
+let db = wrap('mysql://trucks:FireDepartment2400@127.0.0.1/TruckCare?debug=false&charset=utf8');
 
-var truckCareDatabase = {};
+class TruckCareDatabase {
+    getAllTrucks(getAllTrucksCallback) {
+        db.query('select * from trucks', getAllTrucksCallback);
+    }
+}
 
-truckCareDatabase.getAllTrucks = function(getAllTrucksCallback) {
-    db.query('select * from trucks', getAllTrucksCallback);
-};
-module.exports = truckCareDatabase;
+export default new TruckCareDatabase();

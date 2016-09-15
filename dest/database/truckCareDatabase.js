@@ -17,7 +17,7 @@ var TruckCareDatabase = function () {
         _classCallCheck(this, TruckCareDatabase);
     }
 
-    _createClass(TruckCareDatabase, [{
+    _createClass(TruckCareDatabase, null, [{
         key: 'getAllTrucks',
         value: function getAllTrucks(getAllTrucksCallback) {
             db.query('select * from trucks', getAllTrucksCallback);
@@ -27,4 +27,4 @@ var TruckCareDatabase = function () {
     return TruckCareDatabase;
 }();
 
-exports.default = new TruckCareDatabase();
+exports.default = TruckCareDatabase;

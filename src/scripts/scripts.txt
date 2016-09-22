@@ -1,0 +1,22 @@
+create database TruckCare;
+
+use TruckCare;
+CREATE TABLE trucks (
+id INT AUTO_INCREMENT PRIMARY KEY,
+truckNumber VARCHAR(30) NOT NULL
+)
+
+CREATE TABLE groups (
+groupId INT AUTO_INCREMENT PRIMARY KEY,
+groupName VARCHAR(50) NOT NULL,
+isActive bit
+)
+
+CREATE TABLE teams(
+id INT AUTO_INCREMENT PRIMARY KEY,
+firstName VARCHAR(40) NOT NULL,
+lastName VARCHAR(50) NOT NULL,
+groupId INT NOT NULL,
+FOREIGN KEY (groupId)
+REFERENCES groups(groupId)
+)

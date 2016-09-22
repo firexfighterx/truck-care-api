@@ -3,11 +3,8 @@ import TruckListCallbackHandlers from '../trucks/TruckListCallbackHandlers';
 
 class TruckListController {
     getAllTrucks(req, res) {
-        TruckCareDatabase.getAllTrucks((errors, results) => {
-            TruckListCallbackHandlers.getAllTrucksHandler(res, errors, results);
-        });
+        TruckCareDatabase.getAllTrucks(TruckListCallbackHandlers.getAllTrucksHandler.bind(this, res));
     }
 }
-
 
 export default new TruckListController();

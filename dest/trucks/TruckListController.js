@@ -26,9 +26,7 @@ var TruckListController = function () {
     _createClass(TruckListController, [{
         key: 'getAllTrucks',
         value: function getAllTrucks(req, res) {
-            _TruckCareDatabase2.default.getAllTrucks(function (errors, results) {
-                _TruckListCallbackHandlers2.default.getAllTrucksHandler(res, errors, results);
-            });
+            _TruckCareDatabase2.default.getAllTrucks(_TruckListCallbackHandlers2.default.getAllTrucksHandler.bind(this, res));
         }
     }]);
 

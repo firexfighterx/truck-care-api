@@ -19,13 +19,14 @@ describe('truckListController', () => {
 
             let req = {};
             let res = {};
+            let bound_trucks_handler = () => {};
 
-            let getAllTrucksHandler = sandbox.stub(TruckListCallbackHandlers, 'getAllTrucksHandler');
-            let getItems = sandbox.stub(TruckCareDatabase, 'getAllTrucks');
+            let boundGetAllTrucksHandler = sandbox.stub(TruckListCallbackHandlers.getAllTrucksHandler, 'bind').returns(bound_trucks_handler);
+            let getAllTrucks = sandbox.stub(TruckCareDatabase, 'getAllTrucks');
 
             TruckListController.getAllTrucks(req, res);
 
-            assert(getItems.calledOnce, 'called truck care database get items');
+            assert(getAllTrucks.withArgs(bound_trucks_handler).calledOnce, 'called truck care database get items');
         });
     });
 

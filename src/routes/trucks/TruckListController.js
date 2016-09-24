@@ -1,5 +1,5 @@
-import TruckCareDatabase from '../database/TruckCareDatabase';
-import TruckListCallbackHandlers from '../trucks/TruckListCallbackHandlers';
+import TruckCareDatabase from '../../database/TruckCareDatabase';
+import TruckListCallbackHandlers from '../../routes/trucks/TruckListCallbackHandlers';
 
 class TruckListController {
     static getAllTrucks(req, res) {

@@ -1,6 +1,6 @@
 import assert from 'assert';
 import sinon from 'sinon';
-import TruckListCallbackHandlers from '../../trucks/TruckListCallbackHandlers';
+import TruckListCallbackHandlers from '../../routes/trucks/TruckListCallbackHandlers';
 
 describe('TruckListCallbackHandlers', () => {
     let sandbox;

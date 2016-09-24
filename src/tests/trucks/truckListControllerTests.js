@@ -1,8 +1,8 @@
 import assert from 'assert';
 import sinon from 'sinon';
 import TruckCareDatabase from '../../database/TruckCareDatabase';
-import TruckListCallbackHandlers from '../../trucks/TruckListCallbackHandlers';
-import TruckListController from '../../trucks/TruckListController';
+import TruckListCallbackHandlers from '../../routes/trucks/TruckListCallbackHandlers';
+import TruckListController from '../../routes/trucks/TruckListController';
 
 describe('TruckListController', () => {
     let sandbox;

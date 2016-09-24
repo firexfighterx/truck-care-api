@@ -1,5 +1,6 @@
 import express from 'express';
-import GetTrucksRoutes from './trucks/TruckListRoutes';
+import GetTrucksRoutes from './routes/trucks/TruckListRoutes';
+import GroupRoutes from './routes/groups/GroupRoutes';
 
 let app = express();
 
@@ -11,6 +12,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/api', GetTrucksRoutes.bind(GetTrucksRoutes));
+app.use('/api', GroupRoutes.bind(GroupRoutes));
 
 app.listen(3000, () => {
     console.log('Truck Care API listening on port 3000');

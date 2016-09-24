@@ -37,28 +37,18 @@ var TruckCareDatabase = function () {
         key: 'getAllTrucks',
         value: function getAllTrucks(success, failure) {
             db.select().from('trucks').then(success).catch(failure);
-            //this.getActiveTruckCareGroup();
         }
-        //
-        // static getActiveTruckCareGroup() {
-        //     let activeGroupId;
-        //     db.select('groupId').from('groups').where({isActive: true}).then(groupId => {
-        //         activeGroupId = groupId[0];
-        //         return db.select().from('teams').where({groupId: groupId[0].groupId});
-        //     }).then(members => {
-        //         let mappedMembers = _.map(members, (member) => {
-        //             return {id: member.id, name: `${member.firstName} ${member.lastName}`};
-        //         });
-        //
-        //         let final = {
-        //             groupId: activeGroupId.groupId,
-        //             members: mappedMembers
-        //         };
-        //
-        //         console.log(final);
-        //     });
-        // }
-
+    }, {
+        key: 'getActiveTruckCareGroup',
+        value: function getActiveTruckCareGroup(success, failure) {
+            var group = void 0;
+            db.select().from('groups').where({ isActive: true }).then(function (activeGroup) {
+                group = activeGroup[0];
+                return db.select().from('teams').where({ groupId: group.groupId });
+            }).then(function (members) {
+                success(group, members);
+            }).catch(failure);
+        }
     }]);
 
     return TruckCareDatabase;

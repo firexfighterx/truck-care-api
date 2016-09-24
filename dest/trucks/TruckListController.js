@@ -23,14 +23,14 @@ var TruckListController = function () {
         _classCallCheck(this, TruckListController);
     }
 
-    _createClass(TruckListController, [{
+    _createClass(TruckListController, null, [{
         key: 'getAllTrucks',
         value: function getAllTrucks(req, res) {
-            _TruckCareDatabase2.default.getAllTrucks(_TruckListCallbackHandlers2.default.getAllTrucksHandler.bind(this, res));
+            _TruckCareDatabase2.default.getAllTrucks(_TruckListCallbackHandlers2.default.getTrucksSuccess.bind(this, res), _TruckListCallbackHandlers2.default.gettrucksFailure.bind(this, res));
         }
     }]);
 
     return TruckListController;
 }();
 
-exports.default = new TruckListController();
+exports.default = TruckListController;

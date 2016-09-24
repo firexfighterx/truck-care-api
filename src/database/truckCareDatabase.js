@@ -1,11 +1,17 @@
-import {
-    wrap
-} from "node-mysql-wrapper";
-let db = wrap('mysql://trucks:FireDepartment2400@127.0.0.1/TruckCare?debug=false&charset=utf8');
+import knex from 'knex';
+let db = knex({
+    client: 'mysql',
+    connection: {
+        host: 'localhost',
+        user: 'trucks',
+        password: 'FireDepartment2400',
+        database: 'TruckCare'
+    }
+});
 
 class TruckCareDatabase {
-    static getAllTrucks(getAllTrucksCallback) {
-        db.query('select * from trucks', getAllTrucksCallback);
+    static getAllTrucks(success, failure) {
+        db.select().from('trucks').then(success).catch(failure);
     }
 }
 

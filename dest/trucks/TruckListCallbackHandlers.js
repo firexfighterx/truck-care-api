@@ -13,24 +13,21 @@ var TruckListCallbackHandlers = function () {
         _classCallCheck(this, TruckListCallbackHandlers);
     }
 
-    _createClass(TruckListCallbackHandlers, [{
-        key: "getAllTrucksHandler",
-        value: function getAllTrucksHandler(res, errors, results) {
-            var statusCode = void 0;
-            var items = void 0;
-            if (errors !== null) {
-                items = [];
-                statusCode = 500;
-            } else {
-                statusCode = 200;
-                items = results;
-            }
-            res.statusCode = statusCode;
-            res.send(items);
+    _createClass(TruckListCallbackHandlers, null, [{
+        key: "getTrucksSuccess",
+        value: function getTrucksSuccess(res, trucks) {
+            res.statusCode = 200;
+            res.send(trucks);
+        }
+    }, {
+        key: "gettrucksFailure",
+        value: function gettrucksFailure(res) {
+            res.statusCode = 500;
+            res.send([]);
         }
     }]);
 
     return TruckListCallbackHandlers;
 }();
 
-exports.default = new TruckListCallbackHandlers();
+exports.default = TruckListCallbackHandlers;

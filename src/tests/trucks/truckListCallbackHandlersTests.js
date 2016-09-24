@@ -2,7 +2,7 @@ import assert from 'assert';
 import sinon from 'sinon';
 import TruckListCallbackHandlers from '../../trucks/TruckListCallbackHandlers';
 
-describe('truckListCallbackHandlers', () => {
+describe('TruckListCallbackHandlers', () => {
     let sandbox;
     beforeEach(() => {
         sandbox = sinon.sandbox.create();
@@ -12,23 +12,25 @@ describe('truckListCallbackHandlers', () => {
         sandbox.restore();
     });
 
-    describe('getAllTrucksHandler', () => {
+    describe('getTrucksSuccess', () => {
         it('sends the database results with a successful database call', () => {
             let actualResult;
             let res = {
-                send: (results) => {
-                    actualResult = results;
+                send: (trucks) => {
+                    actualResult = trucks;
                 }
             };
-            let results = ['testing'];
+            let trucks = ['testing'];
 
-            TruckListCallbackHandlers.getAllTrucksHandler(res, null, results);
+            TruckListCallbackHandlers.getTrucksSuccess(res, trucks);
 
-            assert.strictEqual(actualResult, results, 'called send function sending back results');
+            assert.strictEqual(actualResult, trucks, 'called send function sending back results');
             assert.strictEqual(res.statusCode, 200, 'send status was set to 200');
 
         });
+    });
 
+    describe('gettrucksFailure', () => {
         it('sends empty list with errors', () => {
             let actualResult;
             let res = {
@@ -39,9 +41,9 @@ describe('truckListCallbackHandlers', () => {
             let results = ['testing'];
             let errorArray = [];
 
-            TruckListCallbackHandlers.getAllTrucksHandler(res, {}, results);
+            TruckListCallbackHandlers.gettrucksFailure(res);
 
-            assert.strictEqual(actualResult.count, errorArray.count, 'called send function sending back results');
+            assert.deepEqual(actualResult, errorArray, 'called send function sending back results');
             assert.strictEqual(res.statusCode, 500, 'send status was set to 500');
 
         });

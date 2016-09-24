@@ -4,7 +4,7 @@ import TruckCareDatabase from '../../database/TruckCareDatabase';
 import TruckListCallbackHandlers from '../../trucks/TruckListCallbackHandlers';
 import TruckListController from '../../trucks/TruckListController';
 
-describe('truckListController', () => {
+describe('TruckListController', () => {
     let sandbox;
     beforeEach(() => {
         sandbox = sinon.sandbox.create();
@@ -19,14 +19,17 @@ describe('truckListController', () => {
 
             let req = {};
             let res = {};
-            let bound_trucks_handler = () => {};
+            let bound_success = () => {};
+            let bound_failure = () => {};
 
-            let boundGetAllTrucksHandler = sandbox.stub(TruckListCallbackHandlers.getAllTrucksHandler, 'bind').returns(bound_trucks_handler);
+            let boundGetTrucksSuccess = sandbox.stub(TruckListCallbackHandlers.getTrucksSuccess, 'bind').returns(bound_success);
+            let boundGetTrucksFailure = sandbox.stub(TruckListCallbackHandlers.gettrucksFailure, 'bind').returns(bound_failure);
             let getAllTrucks = sandbox.stub(TruckCareDatabase, 'getAllTrucks');
 
             TruckListController.getAllTrucks(req, res);
 
-            assert(getAllTrucks.withArgs(bound_trucks_handler).calledOnce, 'called truck care database get items');
+            assert(getAllTrucks.withArgs(bound_success, bound_failure).calledOnce, 'called truck care database get items');
+
         });
     });
 

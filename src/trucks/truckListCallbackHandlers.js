@@ -1,17 +1,13 @@
 class TruckListCallbackHandlers {
-    getAllTrucksHandler(res, errors, results) {
-        let statusCode;
-        let items;
-        if (errors !== null) {
-            items = [];
-            statusCode = 500;
-        } else {
-            statusCode = 200;
-            items = results;
-        }
-        res.statusCode = statusCode;
-        res.send(items);
-    };
+    static getTrucksSuccess(res, trucks) {
+        res.statusCode = 200;
+        res.send(trucks);
+    }
+
+    static gettrucksFailure(res) {
+        res.statusCode = 500;
+        res.send([]);
+    }
 }
 
-export default new TruckListCallbackHandlers();
+export default TruckListCallbackHandlers;

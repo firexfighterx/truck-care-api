@@ -38,7 +38,13 @@ describe('GroupsHandlers', () => {
                 {
                     id: 1,
                     firstName: 'Foo',
-                    lastName: 'Bar'
+                    lastName: 'Bar',
+                    isActive: 0
+                }, {
+                    id: 2,
+                    firstName: 'Rumple',
+                    lastName: 'Stilskin',
+                    isActive: 1
                 }
             ];
             let expected = {
@@ -47,6 +53,12 @@ describe('GroupsHandlers', () => {
                     {
                         id: 1,
                         name: 'Foo Bar'
+                    }
+                ],
+                activeMembers: [
+                    {
+                        id: 2,
+                        name: 'Rumple Stilskin'
                     }
                 ]
             };

@@ -28,6 +28,16 @@ var db = (0, _knex2.default)({
     }
 });
 
+var activeTruckCareGroup = function activeTruckCareGroup(success, failure) {
+    var group = void 0;
+    db.select().from('groups').where({ isActive: true }).then(function (activeGroup) {
+        group = activeGroup[0];
+        return db.select().from('teams').where({ groupId: group.groupId });
+    }).then(function (members) {
+        success(group, members);
+    }).catch(failure);
+};
+
 var TruckCareDatabase = function () {
     function TruckCareDatabase() {
         _classCallCheck(this, TruckCareDatabase);
@@ -41,13 +51,12 @@ var TruckCareDatabase = function () {
     }, {
         key: 'getActiveTruckCareGroup',
         value: function getActiveTruckCareGroup(success, failure) {
-            var group = void 0;
-            db.select().from('groups').where({ isActive: true }).then(function (activeGroup) {
-                group = activeGroup[0];
-                return db.select().from('teams').where({ groupId: group.groupId });
-            }).then(function (members) {
-                success(group, members);
-            }).catch(failure);
+            activeTruckCareGroup(success, failure);
+        }
+    }, {
+        key: 'saveActiveTruckCareUserActiveStatus',
+        value: function saveActiveTruckCareUserActiveStatus(id, isActive, success, failure) {
+            db('teams').where({ id: id }).update({ isActive: isActive }).then(activeTruckCareGroup.bind(this, success, failure));
         }
     }]);
 

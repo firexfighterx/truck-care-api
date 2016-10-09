@@ -15,7 +15,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var nameMapper = function nameMapper(member) {
-    return { id: member.id, name: member.firstName + ' ' + member.lastName };
+    return { id: member.userId, name: member.firstName + ' ' + member.lastName };
 };
 
 var GroupsHandlers = function () {
@@ -25,7 +25,8 @@ var GroupsHandlers = function () {
 
     _createClass(GroupsHandlers, null, [{
         key: 'getGroupsSuccess',
-        value: function getGroupsSuccess(res, group, members) {
+        value: function getGroupsSuccess(res, members) {
+            var activeGroup = {};
             var mappedMembers = _lodash2.default.chain(members).filter(function (member) {
                 return !member.isActive;
             }).map(nameMapper).value();
@@ -33,11 +34,14 @@ var GroupsHandlers = function () {
                 return !!member.isActive;
             }).map(nameMapper).value();
 
-            var activeGroup = {
-                groupName: group.groupName,
-                members: mappedMembers,
-                activeMembers: activeMembers
-            };
+            if (members.length > 0) {
+                activeGroup = {
+                    groupName: members[0].groupName,
+                    members: mappedMembers,
+                    activeMembers: activeMembers
+                };
+            }
+
             res.statusCode = 200;
             res.send(activeGroup);
         }

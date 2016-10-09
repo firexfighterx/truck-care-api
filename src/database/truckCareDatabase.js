@@ -12,12 +12,7 @@ let db = knex({
 
 let activeTruckCareGroup = (success, failure) => {
     let group;
-    db.select().from('groups').where({isActive: true}).then(activeGroup => {
-        group = activeGroup[0];
-        return db.select().from('teams').where({groupId: group.groupId});
-    }).then(members => {
-        success(group, members);
-    }).catch(failure);
+    db.select().from('activeGroup').then(success).catch(failure);
 };
 
 class TruckCareDatabase {
@@ -29,8 +24,8 @@ class TruckCareDatabase {
         activeTruckCareGroup(success, failure);
     }
 
-    static saveActiveTruckCareUserActiveStatus(id, isActive, success, failure) {
-        db('teams').where({id}).update({isActive}).then(activeTruckCareGroup.bind(this, success, failure));
+    static saveActiveTruckCareUserActiveStatus(userId, isActive, success, failure) {
+        db('user').where({userId}).update({isActive}).then(activeTruckCareGroup.bind(this, success, failure));
     }
 }
 

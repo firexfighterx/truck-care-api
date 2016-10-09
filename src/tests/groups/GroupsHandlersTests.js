@@ -19,7 +19,7 @@ describe('GroupsHandlers', () => {
                 send: () => {}
             };
 
-            GroupsHandlers.getGroupsSuccess(req, '', []);
+            GroupsHandlers.getGroupsSuccess(req, []);
 
             assert.strictEqual(req.statusCode, 200, 'returned a 200 status code');
         });
@@ -31,24 +31,22 @@ describe('GroupsHandlers', () => {
                     actualMembers = members;
                 }
             };
-            let group = {
-                groupName: 'Group Name'
-            };
             let members = [
                 {
-                    id: 1,
+                    groupName: 'Group Name',
+                    userId: 1,
                     firstName: 'Foo',
                     lastName: 'Bar',
                     isActive: 0
                 }, {
-                    id: 2,
+                    userId: 2,
                     firstName: 'Rumple',
                     lastName: 'Stilskin',
                     isActive: 1
                 }
             ];
             let expected = {
-                groupName: group.groupName,
+                groupName: 'Group Name',
                 members: [
                     {
                         id: 1,
@@ -63,7 +61,7 @@ describe('GroupsHandlers', () => {
                 ]
             };
 
-            GroupsHandlers.getGroupsSuccess(req, group, members);
+            GroupsHandlers.getGroupsSuccess(req, members);
 
             assert.deepEqual(actualMembers, expected, 'transposed to item to return');
         });

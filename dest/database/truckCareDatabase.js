@@ -53,6 +53,11 @@ var TruckCareDatabase = function () {
         value: function saveActiveTruckCareUserActiveStatus(userId, isActive, success, failure) {
             db('user').where({ userId: userId }).update({ isActive: isActive }).then(activeTruckCareGroup.bind(this, success, failure));
         }
+    }, {
+        key: 'getTruckDetailItems',
+        value: function getTruckDetailItems(truckNumber, success, failure) {
+            db.select().from('truckdetailitems').where({ truckNumber: truckNumber }).then(success).catch(failure);
+        }
     }]);
 
     return TruckCareDatabase;

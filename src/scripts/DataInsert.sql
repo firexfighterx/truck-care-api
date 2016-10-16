@@ -78,43 +78,6 @@ use TruckCare;
 -- insert into category set description = 'Fans/Generators';
 
 
-insert into responsibility set truckId = 1, categoryId = 1, description = 'Truck Inventory';
-insert into responsibility set truckId = 1, categoryId = 1, description = 'Road Test';
-insert into responsibility set truckId = 1, categoryId = 1, description = 'Washed';
-insert into responsibility set truckId = 1, categoryId = 1, description = 'Clean Inside Cab (Include Windows)';
-insert into responsibility set truckId = 1, categoryId = 1, description = 'Fuel';
-insert into responsibility set truckId = 1, categoryId = 1, description = 'Oil Level';
-insert into responsibility set truckId = 1, categoryId = 1, description = 'Radiator';
-insert into responsibility set truckId = 1, categoryId = 1, description = 'Air Tanks (Bleed)';
-insert into responsibility set truckId = 1, categoryId = 1, description = 'Tire Pressure';
-insert into responsibility set truckId = 1, categoryId = 1, description = 'Primer Oil';
-insert into responsibility set truckId = 1, categoryId = 1, description = 'Tank Water';
-
-insert into responsibility set truckId = 1, categoryId = 2, description = 'Porta-Power';
-insert into responsibility set truckId = 1, categoryId = 2, description = 'Spreaders (both sets)';
-insert into responsibility set truckId = 1, categoryId = 2, description = 'Cutters (both sets)';
-insert into responsibility set truckId = 1, categoryId = 2, description = 'Rams (both sets)';
-insert into responsibility set truckId = 1, categoryId = 2, description = 'K-12 (start/fuel/oil)';
-insert into responsibility set truckId = 1, categoryId = 2, description = 'Saw Tiger (Blades)';
-insert into responsibility set truckId = 1, categoryId = 2, description = 'Chainsaw (start/fuel/oil)';
-
-insert into responsibility set truckId = 1, categoryId = 3, description = 'SCBA\'s';
-insert into responsibility set truckId = 1, categoryId = 3, description = 'Spare Bottles';
-
-insert into responsibility set truckId = 1, categoryId = 4, description = 'Radios (Set to Fire Com 1, Check Volume)';
-insert into responsibility set truckId = 1, categoryId = 4, description = 'Portables (Check Charge Level)';
-insert into responsibility set truckId = 1, categoryId = 4, description = 'Portables (Check Charge Level)';
-insert into responsibility set truckId = 1, categoryId = 4, description = 'Flood Lights (Mounted)';
-insert into responsibility set truckId = 1, categoryId = 4, description = 'Flashlights';
-insert into responsibility set truckId = 1, categoryId = 4, description = 'Thermal Camera (Battery Charge Level)';
-insert into responsibility set truckId = 1, categoryId = 4, description = 'C/O Detector (Battery Charge Level)';
-insert into responsibility set truckId = 1, categoryId = 4, description = 'Gas Detector (Battery Charge Level)';
-
-insert into responsibility set truckId = 1, categoryId = 5, description = 'Fans (Start/Fuel/Oil)';
-insert into responsibility set truckId = 1, categoryId = 5, description = 'Generator (Start/Fuel/Oil)';
-insert into responsibility set truckId = 1, categoryId = 5, description = 'Gas Cans (Fill as needed)';
-
-
 -- insert into responsibility set truckId = 1, categoryId = 1, description = 'Truck Inventory';
 -- insert into responsibility set truckId = 1, categoryId = 1, description = 'Road Test';
 -- insert into responsibility set truckId = 1, categoryId = 1, description = 'Washed';
@@ -126,6 +89,102 @@ insert into responsibility set truckId = 1, categoryId = 5, description = 'Gas C
 -- insert into responsibility set truckId = 1, categoryId = 1, description = 'Tire Pressure';
 -- insert into responsibility set truckId = 1, categoryId = 1, description = 'Primer Oil';
 -- insert into responsibility set truckId = 1, categoryId = 1, description = 'Tank Water';
+-- 
+-- insert into responsibility set truckId = 1, categoryId = 2, description = 'Porta-Power';
+-- insert into responsibility set truckId = 1, categoryId = 2, description = 'Spreaders (both sets)';
+-- insert into responsibility set truckId = 1, categoryId = 2, description = 'Cutters (both sets)';
+-- insert into responsibility set truckId = 1, categoryId = 2, description = 'Rams (both sets)';
+-- insert into responsibility set truckId = 1, categoryId = 2, description = 'K-12 (start/fuel/oil)';
+-- insert into responsibility set truckId = 1, categoryId = 2, description = 'Saw Tiger (Blades)';
+-- insert into responsibility set truckId = 1, categoryId = 2, description = 'Chainsaw (start/fuel/oil)';
+-- 
+-- insert into responsibility set truckId = 1, categoryId = 3, description = 'SCBA\'s';
+-- insert into responsibility set truckId = 1, categoryId = 3, description = 'Spare Bottles';
+-- 
+-- insert into responsibility set truckId = 1, categoryId = 4, description = 'Radios (Set to Fire Com 1, Check Volume)';
+-- insert into responsibility set truckId = 1, categoryId = 4, description = 'Portables (Check Charge Level)';
+-- insert into responsibility set truckId = 1, categoryId = 4, description = 'Portables (Check Charge Level)';
+-- insert into responsibility set truckId = 1, categoryId = 4, description = 'Flood Lights (Mounted)';
+-- insert into responsibility set truckId = 1, categoryId = 4, description = 'Flashlights';
+-- insert into responsibility set truckId = 1, categoryId = 4, description = 'Thermal Camera (Battery Charge Level)';
+-- insert into responsibility set truckId = 1, categoryId = 4, description = 'C/O Detector (Battery Charge Level)';
+-- insert into responsibility set truckId = 1, categoryId = 4, description = 'Gas Detector (Battery Charge Level)';
+-- 
+-- insert into responsibility set truckId = 1, categoryId = 5, description = 'Fans (Start/Fuel/Oil)';
+-- insert into responsibility set truckId = 1, categoryId = 5, description = 'Generator (Start/Fuel/Oil)';
+-- insert into responsibility set truckId = 1, categoryId = 5, description = 'Gas Cans (Fill as needed)';
+
+
+-- 
+-- 
+-- 
+-- 
+-- insert into responsibility set truckId = 2, categoryId = 1, description = 'Truck Inventory';
+-- insert into responsibility set truckId = 2, categoryId = 1, description = 'Road Test';
+-- insert into responsibility set truckId = 2, categoryId = 1, description = 'Washed';
+-- insert into responsibility set truckId = 2, categoryId = 1, description = 'Clean Inside Cab (Include Windows)';
+-- insert into responsibility set truckId = 2, categoryId = 1, description = 'Fuel';
+-- insert into responsibility set truckId = 2, categoryId = 1, description = 'Oil Level';
+-- insert into responsibility set truckId = 2, categoryId = 1, description = 'Radiator';
+-- insert into responsibility set truckId = 2, categoryId = 1, description = 'Air Tanks (Bleed)';
+-- insert into responsibility set truckId = 2, categoryId = 1, description = 'Tire Pressure';
+-- insert into responsibility set truckId = 2, categoryId = 1, description = 'Primer Oil';
+-- insert into responsibility set truckId = 2, categoryId = 1, description = 'Tank Water';
+-- 
+-- insert into responsibility set truckId = 2, categoryId = 2, description = 'Porta-Power';
+-- insert into responsibility set truckId = 2, categoryId = 2, description = 'Spreaders (both sets)';
+-- insert into responsibility set truckId = 2, categoryId = 2, description = 'Cutters (both sets)';
+-- insert into responsibility set truckId = 2, categoryId = 2, description = 'Rams (both sets)';
+-- insert into responsibility set truckId = 2, categoryId = 2, description = 'Chainsaw (start/fuel/oil)';
+-- 
+-- insert into responsibility set truckId = 2, categoryId = 3, description = 'SCBA\'s';
+-- insert into responsibility set truckId = 2, categoryId = 3, description = 'Spare Bottles';
+-- 
+-- insert into responsibility set truckId = 2, categoryId = 4, description = 'Radios (Set to Fire Com 1, Check Volume)';
+-- insert into responsibility set truckId = 2, categoryId = 4, description = 'Portables (Check Charge Level)';
+-- insert into responsibility set truckId = 2, categoryId = 4, description = 'Portables (Check Charge Level)';
+-- insert into responsibility set truckId = 2, categoryId = 4, description = 'Flood Lights (Mounted)';
+-- insert into responsibility set truckId = 2, categoryId = 4, description = 'Flashlights';
+-- insert into responsibility set truckId = 2, categoryId = 4, description = 'Thermal Camera (Battery Charge Level)';
+-- 
+-- insert into responsibility set truckId = 2, categoryId = 5, description = 'Fans (Start/Fuel/Oil)';
+-- insert into responsibility set truckId = 2, categoryId = 5, description = 'Generator (Start/Fuel/Oil)';
+-- insert into responsibility set truckId = 2, categoryId = 5, description = 'Gas Cans (Fill as needed)';
+
+
+
+
+
+
+
+-- 
+-- insert into responsibility set truckId = 3, categoryId = 1, description = 'Truck Inventory';
+-- insert into responsibility set truckId = 3, categoryId = 1, description = 'Road Test';
+-- insert into responsibility set truckId = 3, categoryId = 1, description = 'Washed';
+-- insert into responsibility set truckId = 3, categoryId = 1, description = 'Clean Inside Cab (Include Windows)';
+-- insert into responsibility set truckId = 3, categoryId = 1, description = 'Fuel';
+-- insert into responsibility set truckId = 3, categoryId = 1, description = 'Oil Level';
+-- insert into responsibility set truckId = 3, categoryId = 1, description = 'Radiator';
+-- insert into responsibility set truckId = 3, categoryId = 1, description = 'Air Tanks (Bleed)';
+-- insert into responsibility set truckId = 3, categoryId = 1, description = 'Tire Pressure';
+-- insert into responsibility set truckId = 3, categoryId = 1, description = 'Primer Oil';
+-- insert into responsibility set truckId = 3, categoryId = 1, description = 'Tank Water';
+-- 
+-- insert into responsibility set truckId = 3, categoryId = 2, description = 'Porta-Power';
+-- insert into responsibility set truckId = 3, categoryId = 2, description = 'Chainsaw (start/fuel/oil)';
+-- 
+-- insert into responsibility set truckId = 3, categoryId = 3, description = 'SCBA\'s';
+-- insert into responsibility set truckId = 3, categoryId = 3, description = 'Spare Bottles';
+-- 
+-- insert into responsibility set truckId = 3, categoryId = 4, description = 'Radios (Set to Fire Com 1, Check Volume)';
+-- insert into responsibility set truckId = 3, categoryId = 4, description = 'Portables (Check Charge Level)';
+-- insert into responsibility set truckId = 3, categoryId = 4, description = 'Portables (Check Charge Level)';
+-- insert into responsibility set truckId = 3, categoryId = 4, description = 'Flood Lights (Mounted)';
+-- insert into responsibility set truckId = 3, categoryId = 4, description = 'Flashlights';
+-- 
+-- insert into responsibility set truckId = 3, categoryId = 5, description = 'Fans (Start/Fuel/Oil)';
+-- insert into responsibility set truckId = 3, categoryId = 5, description = 'Generator (Start/Fuel/Oil)';
+-- insert into responsibility set truckId = 3, categoryId = 5, description = 'Gas Cans (Fill as needed)';
 
 -- use trucks;
 -- drop table trucks;

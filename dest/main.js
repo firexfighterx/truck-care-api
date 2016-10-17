@@ -12,6 +12,10 @@ var _GroupRoutes = require('./routes/groups/GroupRoutes');
 
 var _GroupRoutes2 = _interopRequireDefault(_GroupRoutes);
 
+var _CategoryDetailRoutes = require('./routes/categorydetails/CategoryDetailRoutes');
+
+var _CategoryDetailRoutes2 = _interopRequireDefault(_CategoryDetailRoutes);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var app = (0, _express2.default)();
@@ -25,6 +29,7 @@ app.use(function (req, res, next) {
 
 app.use('/api', _TruckListRoutes2.default.bind(_TruckListRoutes2.default));
 app.use('/api', _GroupRoutes2.default.bind(_GroupRoutes2.default));
+app.use('/api', _CategoryDetailRoutes2.default.bind(_CategoryDetailRoutes2.default));
 
 app.listen(3000, function () {
     console.log('Truck Care API listening on port 3000');

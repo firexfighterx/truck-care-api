@@ -186,6 +186,7 @@ use TruckCare;
 -- insert into responsibility set truckId = 3, categoryId = 5, description = 'Generator (Start/Fuel/Oil)';
 -- insert into responsibility set truckId = 3, categoryId = 5, description = 'Gas Cans (Fill as needed)';
 
+
 -- use trucks;
 -- drop table trucks;
 

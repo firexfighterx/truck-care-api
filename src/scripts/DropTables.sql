@@ -20,4 +20,6 @@ drop table groups;
 drop table user;
 drop table trucks;
 
+drop user 'trucks'@'localhost';
+
 drop database TruckCare;

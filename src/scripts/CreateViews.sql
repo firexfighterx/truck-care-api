@@ -1,3 +1,5 @@
+use TruckCare;
+
 CREATE VIEW `truckDetailItems` AS
 select 	responsibility.responsibilityId, 
 		trucks.truckNumber, 

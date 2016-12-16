@@ -95,7 +95,7 @@ insert into responsibility set truckId = 1, categoryId = 3, description = 'Spare
 
 insert into responsibility set truckId = 1, categoryId = 4, description = 'Radios (Set to Fire Com 1, Check Volume)';
 insert into responsibility set truckId = 1, categoryId = 4, description = 'Portables (Check Charge Level)';
-insert into responsibility set truckId = 1, categoryId = 4, description = 'Portables (Check Charge Level)';
+insert into responsibility set truckId = 1, categoryId = 4, description = 'Vehicle Lights';
 insert into responsibility set truckId = 1, categoryId = 4, description = 'Flood Lights (Mounted)';
 insert into responsibility set truckId = 1, categoryId = 4, description = 'Flashlights';
 insert into responsibility set truckId = 1, categoryId = 4, description = 'Thermal Camera (Battery Charge Level)';
@@ -105,9 +105,6 @@ insert into responsibility set truckId = 1, categoryId = 4, description = 'Gas D
 insert into responsibility set truckId = 1, categoryId = 5, description = 'Fans (Start/Fuel/Oil)';
 insert into responsibility set truckId = 1, categoryId = 5, description = 'Generator (Start/Fuel/Oil)';
 insert into responsibility set truckId = 1, categoryId = 5, description = 'Gas Cans (Fill as needed)';
-
-
-
 
 
 
@@ -134,7 +131,7 @@ insert into responsibility set truckId = 2, categoryId = 3, description = 'Spare
 
 insert into responsibility set truckId = 2, categoryId = 4, description = 'Radios (Set to Fire Com 1, Check Volume)';
 insert into responsibility set truckId = 2, categoryId = 4, description = 'Portables (Check Charge Level)';
-insert into responsibility set truckId = 2, categoryId = 4, description = 'Portables (Check Charge Level)';
+insert into responsibility set truckId = 2, categoryId = 4, description = 'Vehicle Lights';
 insert into responsibility set truckId = 2, categoryId = 4, description = 'Flood Lights (Mounted)';
 insert into responsibility set truckId = 2, categoryId = 4, description = 'Flashlights';
 insert into responsibility set truckId = 2, categoryId = 4, description = 'Thermal Camera (Battery Charge Level)';
@@ -142,11 +139,6 @@ insert into responsibility set truckId = 2, categoryId = 4, description = 'Therm
 insert into responsibility set truckId = 2, categoryId = 5, description = 'Fans (Start/Fuel/Oil)';
 insert into responsibility set truckId = 2, categoryId = 5, description = 'Generator (Start/Fuel/Oil)';
 insert into responsibility set truckId = 2, categoryId = 5, description = 'Gas Cans (Fill as needed)';
-
-
-
-
-
 
 
 
@@ -170,7 +162,7 @@ insert into responsibility set truckId = 3, categoryId = 3, description = 'Spare
 
 insert into responsibility set truckId = 3, categoryId = 4, description = 'Radios (Set to Fire Com 1, Check Volume)';
 insert into responsibility set truckId = 3, categoryId = 4, description = 'Portables (Check Charge Level)';
-insert into responsibility set truckId = 3, categoryId = 4, description = 'Portables (Check Charge Level)';
+insert into responsibility set truckId = 3, categoryId = 4, description = 'Vehicle Lights';
 insert into responsibility set truckId = 3, categoryId = 4, description = 'Flood Lights (Mounted)';
 insert into responsibility set truckId = 3, categoryId = 4, description = 'Flashlights';
 
@@ -179,8 +171,8 @@ insert into responsibility set truckId = 3, categoryId = 5, description = 'Gener
 insert into responsibility set truckId = 3, categoryId = 5, description = 'Gas Cans (Fill as needed)';
 
 
-insert into outcome set wasOutcomeGood = 1, datePerformed = now(), responsibilityId = 1;
-insert into outcome set wasOutcomeGood = 0, datePerformed = now(), responsibilityId = 3;
+insert into outcome set wasOutcomeGood = 1, datePerformed = now(), responsibilityId = 1, truckId = 1;
+insert into outcome set wasOutcomeGood = 0, datePerformed = now(), responsibilityId = 3, truckId = 2;
 insert into outcomeUsers set outcomeId = 2, userId = 3;
 insert into outcomeUsers set outcomeId = 1, userId = 1;
 insert into outcomeUsers set outcomeId = 1, userId = 2;

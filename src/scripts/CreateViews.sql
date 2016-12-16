@@ -24,7 +24,8 @@ SELECT
         g.isActive = 1;
 
 CREATE VIEW `outcomes` AS
-SELECT 	o.outcomeId, 
+SELECT 	o.outcomeId,
+		t.truckNumber,
 		r.responsibilityId, 
         o.wasOutcomeGood, 
         r.description, 
@@ -33,7 +34,8 @@ SELECT 	o.outcomeId,
         concat(u.firstName, ' ', u.lastName) AS name
 	FROM outcome o
 	RIGHT JOIN outcomeUsers ou ON o.outcomeId = ou.outcomeId
+    INNER JOIN trucks t on o.truckId = t.id
 	INNER JOIN user u ON ou.userId = u.userId
 	INNER JOIN responsibility r ON o.responsibilityId = r.responsibilityId
 	LEFT JOIN errorOutcomeDetail od ON o.outcomeId = od.outcomeId
-	ORDER BY o.outcomeId
+	ORDER BY o.outcomeId 

@@ -47,7 +47,9 @@ outcomeId INT AUTO_INCREMENT PRIMARY KEY,
 wasOutcomeGood TINYINT(1) NOT NULL,
 datePerformed DATETIME NOT NULL,
 responsibilityId INT NOT NULL,
-FOREIGN KEY (responsibilityId) REFERENCES responsibility(responsibilityId)
+truckId INT NOT NULL,
+FOREIGN KEY (responsibilityId) REFERENCES responsibility(responsibilityId),
+FOREIGN KEY (truckId) REFERENCES trucks(id)
 );
 
 CREATE TABLE outcomeUsers(
@@ -64,3 +66,7 @@ outcomeId INT NOT NULL,
 detail VARCHAR(2000) NOT NULL,
 FOREIGN KEY (outcomeId) REFERENCES outcome(outcomeId)
 );
+
+CREATE USER 'trucks'@'localhost' IDENTIFIED BY 'FireDepartment2400';
+
+GRANT ALL PRIVILEGES ON TruckCare.* TO 'trucks'@'localhost';

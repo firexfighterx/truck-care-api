@@ -1,73 +1,51 @@
 import assert from 'assert';
+import sinon from 'sinon';
 import CategoryDetailsHandler from '../../routes/categorydetails/CategoryDetailsHandler';
+import CategoryDetailResultMapper from '../../routes/categorydetails/CategoryDetailResultMapper';
 
 describe('CategoryDetailsHandler', () => {
+    let sandbox;
+    beforeEach(() => {
+        sandbox = sinon.sandbox.create();
+    });
+
+    afterEach(() => {
+        sandbox.restore();
+    });
+
     describe('getCategoriesAndDetailsSuccess', () => {
         it('returns a 200 status code', () => {
             let req = {
                 send: () => { }
             };
 
-            CategoryDetailsHandler.getCategoriesAndDetailsSuccess(req, []);
+            CategoryDetailsHandler.getCategoriesAndDetailsSuccess(req, {});
 
             assert.strictEqual(req.statusCode, 200, 'returned a 200 status code');
         });
 
-        it('returns mapped object with category and details', () => {
+        it('calls to CategoryDetailResultMapper', () => {
+            let req = {
+                send: () => {}
+            };
+            let details = {};
+            let mapCategoryDetails = sandbox.stub(CategoryDetailResultMapper, 'mapCategoryDetails');
+            CategoryDetailsHandler.getCategoriesAndDetailsSuccess(req, details);
+
+            assert(mapCategoryDetails.withArgs(details).calledOnce, 'called mapCategoryDetails');
+        });
+
+        it('returns results from CategoryDetailResultMapper', () => {
             let actual;
             let req = {
-                send: (details) => {
-                    actual = details;
-                }
-            };
-            let detail = {
-                responsibilityId: 4,
-                truckNumber: "2412",
-                category: "Truck Essentials",
-                responsibility: "Truck Inventory", 
-            };
-            let details = [detail];
-
-            let expected = [
-                {
-                    category: "Truck Essentials",
-                    responsibilities: [detail]
-                }
-            ];
-
-            CategoryDetailsHandler.getCategoriesAndDetailsSuccess(req, { details, outcomes: [] });
-
-            assert.deepEqual(actual, expected, 'details mapped properly');
-        });
-
-        it('maps recent outcomes to responsiblity', () => {
-            let actual;
-            let req = { send: (details) => {
-                actual = details;
-             } };
-
-            let outcome = {
-                outcomeId: 1,
-                responsibilityId: 4,
-                truckNumber: "2412",
-                description: "Truck Inventory"
-            };
-            let outcomes = [outcome];
-
-            let detail = {
-                responsibilityId: 4,
-                truckNumber: "2412",
-                category: "Truck Essentials",
-                responsibility: "Truck Inventory"
+                send: (details) => {actual = details;}
             };
 
-            CategoryDetailsHandler.getCategoriesAndDetailsSuccess(req, { details: [detail], outcomes });
-            assert.deepEqual(actual[0].outcomes, outcomes, 'outcomes added to details');
-        });
+            let results = [{}];
+            sandbox.stub(CategoryDetailResultMapper, 'mapCategoryDetails').returns(results);
+            CategoryDetailsHandler.getCategoriesAndDetailsSuccess(req, {});
 
-        it('maps recent outcomes to responsibilities ', () => {
-            let actual;
-            
+            assert.deepEqual(actual, results, 'mapped category details sent in response');
         });
 
     });

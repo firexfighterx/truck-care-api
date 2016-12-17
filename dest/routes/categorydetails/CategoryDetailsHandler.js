@@ -23,7 +23,8 @@ var CategoryDetailsHandler = function () {
         key: 'getCategoriesAndDetailsSuccess',
         value: function getCategoriesAndDetailsSuccess(res, details) {
             res.statusCode = 200;
-            var result = _lodash2.default.chain(details).groupBy('category').toPairs().map(function (pair) {
+            console.log(details.outcomes);
+            var result = _lodash2.default.chain(details.details).groupBy('category').toPairs().map(function (pair) {
                 return _lodash2.default.zipObject(['category', 'responsibilities'], pair);
             }).value();
             res.send(result);

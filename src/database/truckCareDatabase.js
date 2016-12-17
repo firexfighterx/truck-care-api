@@ -29,7 +29,14 @@ class TruckCareDatabase {
     }
 
     static getTruckDetailItems(truckNumber, success, failure) {
-        db.select().from('truckdetailitems').where({truckNumber}).then(success).catch(failure);
+        Promise.all([
+            db.select().from('truckdetailitems').where({truckNumber}), 
+            db.select().from('outcomes').where({truckNumber})]).then(details => {
+                return {
+                    details: details[0],
+                    outcomes: details[1]
+                };
+            }).then(success).catch(failure);
     }
 }
 

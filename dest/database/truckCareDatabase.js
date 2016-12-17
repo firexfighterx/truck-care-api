@@ -56,7 +56,15 @@ var TruckCareDatabase = function () {
     }, {
         key: 'getTruckDetailItems',
         value: function getTruckDetailItems(truckNumber, success, failure) {
-            db.select().from('truckdetailitems').where({ truckNumber: truckNumber }).then(success).catch(failure);
+
+            Promise.all([db.select().from('truckdetailitems').where({ truckNumber: truckNumber }), db.select().from('outcomes').where({ truckNumber: truckNumber })]).then(function (details) {
+                return {
+                    details: details[0],
+                    outcomes: details[1]
+                };
+            }).then(success).catch(failure);
+
+            //db.select().from('truckdetailitems').where({truckNumber}).then(success).catch(failure);
         }
     }]);
 

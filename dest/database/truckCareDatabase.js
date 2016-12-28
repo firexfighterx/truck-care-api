@@ -51,20 +51,18 @@ var TruckCareDatabase = function () {
     }, {
         key: 'saveActiveTruckCareUserActiveStatus',
         value: function saveActiveTruckCareUserActiveStatus(userId, isActive, success, failure) {
-            db('user').where({ userId: userId }).update({ isActive: isActive }).then(activeTruckCareGroup.bind(this, success, failure));
+            db('user').where({
+                userId: userId
+            }).update({
+                isActive: isActive
+            }).then(activeTruckCareGroup.bind(this, success, failure));
         }
     }, {
         key: 'getTruckDetailItems',
         value: function getTruckDetailItems(truckNumber, success, failure) {
-
-            Promise.all([db.select().from('truckdetailitems').where({ truckNumber: truckNumber }), db.select().from('outcomes').where({ truckNumber: truckNumber })]).then(function (details) {
-                return {
-                    details: details[0],
-                    outcomes: details[1]
-                };
+            db.select().from('truckdetailitems').where({
+                truckNumber: truckNumber
             }).then(success).catch(failure);
-
-            //db.select().from('truckdetailitems').where({truckNumber}).then(success).catch(failure);
         }
     }]);
 

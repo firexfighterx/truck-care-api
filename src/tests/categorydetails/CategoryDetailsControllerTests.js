@@ -26,8 +26,8 @@ describe('CategoryDetailsController', () => {
             };
             let res = {};
 
-            let boundGetCategoriesAndDetailsSuccess = sandbox.stub(CategoryDetailsHandler.getCategoriesAndDetailsSuccess, 'bind').returns(bound_success);
-            let boundGetCategoriesAndDetailsFailure = sandbox.stub(CategoryDetailsHandler.getCategoriesAndDetailsFailure, 'bind').returns(bound_failure);
+            sandbox.stub(CategoryDetailsHandler.getCategoriesAndDetailsSuccess, 'bind').returns(bound_success);
+            sandbox.stub(CategoryDetailsHandler.getCategoriesAndDetailsFailure, 'bind').returns(bound_failure);
             let getTruckDetailItems = sandbox.stub(TruckCareDatabase, 'getTruckDetailItems');
 
             CategoryDetailsController.getCategoryDetails(req, res);

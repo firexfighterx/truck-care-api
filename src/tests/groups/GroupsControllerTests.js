@@ -54,6 +54,28 @@ describe('GroupsController', () => {
         });
     });
 
+    describe('removeUserActiveStatus', () => {
+        it('calls TruckCareDatabase set a user as not Active', () => {
+            const bound_success = () => {};
+            const bound_failure = () => {};
+            const id = 1;
+            const req = {
+                params: {
+                    id
+                }
+            };
+            const res = {};
+
+            sandbox.stub(GroupsHandlers.getGroupsSuccess, 'bind').returns(bound_success);
+            sandbox.stub(GroupsHandlers.getGroupsFailure, 'bind').returns(bound_failure);
+            let removeUserActiveStatus = sandbox.stub(TruckCareDatabase, 'removeUserActiveStatus');
+
+            GroupsController.removeUserActiveStatus(req, res);
+
+            assert(removeUserActiveStatus.withArgs(id, bound_success, bound_failure).calledOnce, 'called to removeUserActiveStatus');
+        });
+    });
+
     describe('addActiveTruckCareGroupMember', () => {
         it('calls TruckCareDatabase to update active user status to true', () => {
             let bound_success = () => {};

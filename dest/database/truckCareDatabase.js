@@ -48,6 +48,9 @@ var TruckCareDatabase = function () {
             activeTruckCareGroup(success, failure);
         }
     }, {
+        key: 'removeUserActiveStatus',
+        value: function removeUserActiveStatus(userId, success, failure) {}
+    }, {
         key: 'addUserActiveStatus',
         value: function addUserActiveStatus(userId, success, failure) {}
     }, {

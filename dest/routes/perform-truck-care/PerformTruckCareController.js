@@ -22,7 +22,13 @@ var PerformTruckCareController = function () {
     _createClass(PerformTruckCareController, null, [{
         key: 'performTruckCare',
         value: function performTruckCare(req, res) {
-            _truckCareDatabase2.default.createTruckCareOutcome();
+            var args = {
+                outcome: req.body.outcome,
+                truckId: req.body.truckId,
+                responsibilityId: req.body.responsibilityId,
+                users: req.body.users
+            };
+            _truckCareDatabase2.default.createTruckCareOutcome(args);
         }
     }]);
 

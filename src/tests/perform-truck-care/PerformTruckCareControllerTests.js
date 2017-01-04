@@ -4,6 +4,9 @@ import PerformTruckCareController from '../../routes/perform-truck-care/PerformT
 import TruckCareDatabase from '../../database/truckCareDatabase';
 
 describe('PerformTruckCareController', () => {
+    const truckId = 5;
+    const responsibilityId = 2;
+    const users = [1, 2, 3];
     let sandbox;
     beforeEach(() => {
         sandbox = sinon.sandbox.create();
@@ -15,14 +18,28 @@ describe('PerformTruckCareController', () => {
 
     describe('performTruckCare', () => {
         it('calls database to insert new outcome', () => {
-            const req = {};
+            const outcome = true;
+            const req = {
+                body: {
+                    outcome,
+                    users,
+                    responsibilityId,
+                    truckId
+                }
+            };
             const res = {};
+            const expectedArgs = {
+                outcome,
+                truckId,
+                responsibilityId,
+                users
+            };
 
-            let createTruckCareOutcome  = sandbox.stub(TruckCareDatabase, 'createTruckCareOutcome');
+            let createTruckCareOutcome = sandbox.stub(TruckCareDatabase, 'createTruckCareOutcome');
 
             PerformTruckCareController.performTruckCare(req, res);
 
-            assert(createTruckCareOutcome.calledOnce, 'called createTruckCareOutcome');
+            assert(createTruckCareOutcome.withArgs(expectedArgs).calledOnce, 'called createTruckCareOutcome');
         });
     });
 });

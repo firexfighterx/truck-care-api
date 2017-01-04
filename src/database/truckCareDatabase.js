@@ -40,6 +40,8 @@ class TruckCareDatabase {
             truckNumber
         }).then(success).catch(failure);
     }
+
+    static createTruckCareOutcome(success, failure) {}
 }
 
 export default TruckCareDatabase;

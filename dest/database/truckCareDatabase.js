@@ -68,6 +68,9 @@ var TruckCareDatabase = function () {
                 truckNumber: truckNumber
             }).then(success).catch(failure);
         }
+    }, {
+        key: 'createTruckCareOutcome',
+        value: function createTruckCareOutcome(success, failure) {}
     }]);
 
     return TruckCareDatabase;

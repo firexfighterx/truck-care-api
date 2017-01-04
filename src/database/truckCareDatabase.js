@@ -11,7 +11,6 @@ let db = knex({
 });
 
 let activeTruckCareGroup = (success, failure) => {
-    let group;
     db.select().from('activeGroup').then(success).catch(failure);
 };
 

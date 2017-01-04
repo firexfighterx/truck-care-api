@@ -29,7 +29,6 @@ var db = (0, _knex2.default)({
 });
 
 var activeTruckCareGroup = function activeTruckCareGroup(success, failure) {
-    var group = void 0;
     db.select().from('activeGroup').then(success).catch(failure);
 };
 

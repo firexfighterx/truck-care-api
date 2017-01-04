@@ -38,16 +38,6 @@ var GroupsController = function () {
         value: function removeUserActiveStatus(req, res) {
             _TruckCareDatabase2.default.removeUserActiveStatus(req.params.id, _GroupsHandlers2.default.getGroupsSuccess.bind(this, res), _GroupsHandlers2.default.getGroupsFailure.bind(this, res));
         }
-    }, {
-        key: 'addActiveTruckCareGroupMember',
-        value: function addActiveTruckCareGroupMember(req, res) {
-            _TruckCareDatabase2.default.saveActiveTruckCareUserActiveStatus(req.params.id, true, _GroupsHandlers2.default.getGroupsSuccess.bind(this, res), _GroupsHandlers2.default.getGroupsFailure.bind(this, res));
-        }
-    }, {
-        key: 'removeActiveTruckCareGroupMember',
-        value: function removeActiveTruckCareGroupMember(req, res) {
-            _TruckCareDatabase2.default.saveActiveTruckCareUserActiveStatus(req.params.id, false, _GroupsHandlers2.default.getGroupsSuccess.bind(this, res), _GroupsHandlers2.default.getGroupsFailure.bind(this, res));
-        }
     }]);
 
     return GroupsController;

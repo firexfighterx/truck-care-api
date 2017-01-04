@@ -5,10 +5,12 @@ insert into trucks set truckNumber = '2419';
 insert into trucks set truckNumber = '2413';
 insert into trucks set truckNumber = '2495';
 
-insert into groups set groupName = 'Group 1', isActive = false;
-insert into groups set groupName = 'Group 2', isActive = true;
-insert into groups set groupName = 'Group 3', isActive = false;
-insert into groups set groupName = 'Group 4', isActive = false;
+insert into groups set groupName = 'Group 1';
+insert into groups set groupName = 'Group 2';
+insert into groups set groupName = 'Group 3';
+insert into groups set groupName = 'Group 4';
+
+insert into active_group set groupId = 2;
 
 insert into user set firstName = 'Doug', lastName = 'Gonzalez';
 insert into user set firstName = 'Steve', lastName = 'Morales';

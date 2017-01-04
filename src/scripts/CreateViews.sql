@@ -15,13 +15,14 @@ SELECT
         u.userId,
         u.firstName,
         u.lastName,
-        u.isActive
+        IF(au.userId IS NULL, FALSE, TRUE) as isActive
     FROM
         team t
         JOIN user u ON u.userId = t.userId
         JOIN groups g ON g.groupId = t.groupId
+        LEFT JOIN active_user au ON au.userId = t.userId
     WHERE
-        g.isActive = 1;
+        g.groupId = (SELECT groupId FROM active_group LIMIT 1);        
 
 CREATE VIEW `outcomes` AS
 SELECT 	o.outcomeId,

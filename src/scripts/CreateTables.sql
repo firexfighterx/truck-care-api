@@ -10,14 +10,22 @@ truckNumber VARCHAR(30) NOT NULL
 CREATE TABLE user(
 userId INT AUTO_INCREMENT PRIMARY KEY,
 firstName VARCHAR(40) NOT NULL,
-lastName VARCHAR(50) NOT NULL,
-isActive TINYINT(1) NOT NULL DEFAULT 0
+lastName VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE groups(
 groupId INT AUTO_INCREMENT PRIMARY KEY,
-groupName VARCHAR(50) NOT NULL,
-isActive TINYINT(1) NOT NULL DEFAULT 0
+groupName VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE active_group(
+groupId INT,
+FOREIGN KEY (groupId) REFERENCES groups(groupId)
+);
+
+CREATE TABLE active_user(
+userId INT,
+FOREIGN KEY (userId) REFERENCES user(userId)
 );
 
 CREATE TABLE team(
@@ -67,6 +75,6 @@ detail VARCHAR(2000) NOT NULL,
 FOREIGN KEY (outcomeId) REFERENCES outcome(outcomeId)
 );
 
-CREATE USER 'trucks'@'localhost' IDENTIFIED BY 'FireDepartment2400';
+CREATE USER IF NOT EXISTS 'trucks'@'localhost' IDENTIFIED BY 'FireDepartment2400';
 
 GRANT ALL PRIVILEGES ON TruckCare.* TO 'trucks'@'localhost';

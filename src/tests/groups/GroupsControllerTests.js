@@ -22,8 +22,8 @@ describe('GroupsController', () => {
             let req = {};
             let res = {};
 
-            let boundGetGroupsSuccess = sandbox.stub(GroupsHandlers.getGroupsSuccess, 'bind').returns(bound_success);
-            let boundGetGroupsFailure = sandbox.stub(GroupsHandlers.getGroupsFailure, 'bind').returns(bound_failure);
+            sandbox.stub(GroupsHandlers.getGroupsSuccess, 'bind').returns(bound_success);
+            sandbox.stub(GroupsHandlers.getGroupsFailure, 'bind').returns(bound_failure);
             let getActiveTruckCareGroup = sandbox.stub(TruckCareDatabase, 'getActiveTruckCareGroup');
 
             GroupsController.getActiveTruckCareGroup(req, res);
@@ -43,8 +43,8 @@ describe('GroupsController', () => {
             };
             let res = {};
 
-            let boundGetGroupsSuccess = sandbox.stub(GroupsHandlers.getGroupsSuccess, 'bind').returns(bound_success);
-            let boundGetGroupsFailure = sandbox.stub(GroupsHandlers.getGroupsFailure, 'bind').returns(bound_failure);
+            sandbox.stub(GroupsHandlers.getGroupsSuccess, 'bind').returns(bound_success);
+            sandbox.stub(GroupsHandlers.getGroupsFailure, 'bind').returns(bound_failure);
             let saveActiveTruckCareUserActiveStatus = sandbox.stub(TruckCareDatabase, 'saveActiveTruckCareUserActiveStatus');
 
             GroupsController.addActiveTruckCareGroupMember(req, res);
@@ -64,8 +64,8 @@ describe('GroupsController', () => {
             };
             let res = {};
 
-            let boundGetGroupsSuccess = sandbox.stub(GroupsHandlers.getGroupsSuccess, 'bind').returns(bound_success);
-            let boundGetGroupsFailure = sandbox.stub(GroupsHandlers.getGroupsFailure, 'bind').returns(bound_failure);
+            sandbox.stub(GroupsHandlers.getGroupsSuccess, 'bind').returns(bound_success);
+            sandbox.stub(GroupsHandlers.getGroupsFailure, 'bind').returns(bound_failure);
             let saveActiveTruckCareUserActiveStatus = sandbox.stub(TruckCareDatabase, 'saveActiveTruckCareUserActiveStatus');
 
             GroupsController.removeActiveTruckCareGroupMember(req, res);

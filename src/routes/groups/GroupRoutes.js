@@ -3,6 +3,6 @@ import GroupsController from './GroupsController';
 const router = express.Router();
 
 router.get('/group/active', GroupsController.getActiveTruckCareGroup);
-router.put('/group/member/:id/activate', GroupsController.addActiveTruckCareGroupMember);
-router.put('/group/member/:id/deactivate', GroupsController.removeActiveTruckCareGroupMember);
+router.put('/group/member/:id/activate', GroupsController.addUserActiveStatus);
+router.put('/group/member/:id/deactivate', GroupsController.removeUserActiveStatus);
 export default router;

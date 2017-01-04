@@ -17,6 +17,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var router = _express2.default.Router();
 
 router.get('/group/active', _GroupsController2.default.getActiveTruckCareGroup);
-router.put('/group/member/:id/activate', _GroupsController2.default.addActiveTruckCareGroupMember);
-router.put('/group/member/:id/deactivate', _GroupsController2.default.removeActiveTruckCareGroupMember);
+router.put('/group/member/:id/activate', _GroupsController2.default.addUserActiveStatus);
+router.put('/group/member/:id/deactivate', _GroupsController2.default.removeUserActiveStatus);
 exports.default = router;

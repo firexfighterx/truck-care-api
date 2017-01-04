@@ -23,6 +23,8 @@ class TruckCareDatabase {
         activeTruckCareGroup(success, failure);
     }
 
+    static addUserActiveStatus(userId, success, failure){}
+
     static saveActiveTruckCareUserActiveStatus(userId, isActive, success, failure) {
         db('user').where({
             userId

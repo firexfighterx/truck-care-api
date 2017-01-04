@@ -48,6 +48,9 @@ var TruckCareDatabase = function () {
             activeTruckCareGroup(success, failure);
         }
     }, {
+        key: 'addUserActiveStatus',
+        value: function addUserActiveStatus(userId, success, failure) {}
+    }, {
         key: 'saveActiveTruckCareUserActiveStatus',
         value: function saveActiveTruckCareUserActiveStatus(userId, isActive, success, failure) {
             db('user').where({

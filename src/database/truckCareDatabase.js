@@ -35,14 +35,6 @@ class TruckCareDatabase {
         }).then(activeTruckCareGroup.bind(this, success, failure));
     }
 
-    static saveActiveTruckCareUserActiveStatus(userId, isActive, success, failure) {
-        db('user').where({
-            userId
-        }).update({
-            isActive
-        }).then(activeTruckCareGroup.bind(this, success, failure));
-    }
-
     static getTruckDetailItems(truckNumber, success, failure) {
         db.select().from('truckdetailitems').where({
             truckNumber

@@ -23,9 +23,17 @@ class TruckCareDatabase {
         activeTruckCareGroup(success, failure);
     }
 
-    static removeUserActiveStatus(userId, success, failure) {}
+    static removeUserActiveStatus(userId, success, failure) {
+        db('active_user').where({
+            userId
+        }).del().then(activeTruckCareGroup.bind(this, success, failure));
+    }
 
-    static addUserActiveStatus(userId, success, failure){}
+    static addUserActiveStatus(userId, success, failure) {
+        db('active_user').insert({
+            userId
+        }).then(activeTruckCareGroup.bind(this, success, failure));
+    }
 
     static saveActiveTruckCareUserActiveStatus(userId, isActive, success, failure) {
         db('user').where({

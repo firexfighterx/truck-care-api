@@ -49,10 +49,18 @@ var TruckCareDatabase = function () {
         }
     }, {
         key: 'removeUserActiveStatus',
-        value: function removeUserActiveStatus(userId, success, failure) {}
+        value: function removeUserActiveStatus(userId, success, failure) {
+            db('active_user').where({
+                userId: userId
+            }).del().then(activeTruckCareGroup.bind(this, success, failure));
+        }
     }, {
         key: 'addUserActiveStatus',
-        value: function addUserActiveStatus(userId, success, failure) {}
+        value: function addUserActiveStatus(userId, success, failure) {
+            db('active_user').insert({
+                userId: userId
+            }).then(activeTruckCareGroup.bind(this, success, failure));
+        }
     }, {
         key: 'saveActiveTruckCareUserActiveStatus',
         value: function saveActiveTruckCareUserActiveStatus(userId, isActive, success, failure) {

@@ -10,6 +10,10 @@ var _truckCareDatabase = require('../../database/truckCareDatabase');
 
 var _truckCareDatabase2 = _interopRequireDefault(_truckCareDatabase);
 
+var _PerformTruckCareValidator = require('./PerformTruckCareValidator');
+
+var _PerformTruckCareValidator2 = _interopRequireDefault(_PerformTruckCareValidator);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -29,6 +33,7 @@ var PerformTruckCareController = function () {
                 users: req.body.users
             };
             _truckCareDatabase2.default.createTruckCareOutcome(args);
+            _PerformTruckCareValidator2.default.isRequestValid(args);
         }
     }]);
 

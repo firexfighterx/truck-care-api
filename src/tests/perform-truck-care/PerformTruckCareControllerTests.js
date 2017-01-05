@@ -2,6 +2,7 @@ import assert from 'assert';
 import sinon from 'sinon';
 import Controller from '../../routes/perform-truck-care/PerformTruckCareController';
 import Database from '../../database/truckCareDatabase';
+import Validator from '../../routes/perform-truck-care/PerformTruckCareValidator';
 
 describe('PerformTruckCareController', () => {
     const truckId = 5;
@@ -40,6 +41,30 @@ describe('PerformTruckCareController', () => {
             Controller.performTruckCare(req, res);
 
             assert(createTruckCareOutcome.withArgs(expectedArgs).calledOnce, 'called createTruckCareOutcome');
+        });
+
+        it('calls Validator to validate request', () => {
+            const outcome = true;
+            const req = {
+                body: {
+                    outcome,
+                    users,
+                    responsibilityId,
+                    truckId
+                }
+            };
+            const expectedArgs = {
+                outcome,
+                truckId,
+                responsibilityId,
+                users
+            };
+
+            let isRequestValid = sandbox.stub(Validator, 'isRequestValid');
+
+            Controller.performTruckCare(req, {});
+
+            assert(isRequestValid.withArgs(expectedArgs).calledOnce, 'called to perform validation');
         });
     });
 });

@@ -1,4 +1,5 @@
 import Database from '../../database/truckCareDatabase';
+import Validator from './PerformTruckCareValidator';
 class PerformTruckCareController {
     static performTruckCare(req, res) {
         var args = {
@@ -8,6 +9,7 @@ class PerformTruckCareController {
             users: req.body.users
         };        
         Database.createTruckCareOutcome(args);
+        Validator.isRequestValid(args);
     }
 }
 

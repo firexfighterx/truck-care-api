@@ -70,7 +70,14 @@ var TruckCareDatabase = function () {
         }
     }, {
         key: 'createTruckCareOutcome',
-        value: function createTruckCareOutcome(success, failure) {}
+        value: function createTruckCareOutcome(args, success, failure) {
+            db('outcome').returning('outcomeId').insert({
+                wasOutcomeGood: args.outcome,
+                datePerformed: new Date(),
+                responsibilityId: args.responsibilityId,
+                truckId: args.truckId
+            }).then(success).catch(failure);
+        }
     }]);
 
     return TruckCareDatabase;

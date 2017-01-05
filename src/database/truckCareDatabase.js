@@ -41,7 +41,14 @@ class TruckCareDatabase {
         }).then(success).catch(failure);
     }
 
-    static createTruckCareOutcome(success, failure) {}
+    static createTruckCareOutcome(args, success, failure) {
+        db('outcome').returning('outcomeId').insert({
+            wasOutcomeGood: args.outcome,
+            datePerformed: new Date(),
+            responsibilityId: args.responsibilityId,
+            truckId: args.truckId
+        }).then(success).catch(failure);
+    }
 }
 
 export default TruckCareDatabase;

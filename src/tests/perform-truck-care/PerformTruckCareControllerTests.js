@@ -1,7 +1,7 @@
 import assert from 'assert';
 import sinon from 'sinon';
-import PerformTruckCareController from '../../routes/perform-truck-care/PerformTruckCareController';
-import TruckCareDatabase from '../../database/truckCareDatabase';
+import Controller from '../../routes/perform-truck-care/PerformTruckCareController';
+import Database from '../../database/truckCareDatabase';
 
 describe('PerformTruckCareController', () => {
     const truckId = 5;
@@ -35,9 +35,9 @@ describe('PerformTruckCareController', () => {
                 users
             };
 
-            let createTruckCareOutcome = sandbox.stub(TruckCareDatabase, 'createTruckCareOutcome');
+            let createTruckCareOutcome = sandbox.stub(Database, 'createTruckCareOutcome');
 
-            PerformTruckCareController.performTruckCare(req, res);
+            Controller.performTruckCare(req, res);
 
             assert(createTruckCareOutcome.withArgs(expectedArgs).calledOnce, 'called createTruckCareOutcome');
         });

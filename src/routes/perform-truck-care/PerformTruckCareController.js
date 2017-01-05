@@ -1,4 +1,4 @@
-import TruckCareDatabase from '../../database/truckCareDatabase';
+import Database from '../../database/truckCareDatabase';
 class PerformTruckCareController {
     static performTruckCare(req, res) {
         var args = {
@@ -7,7 +7,7 @@ class PerformTruckCareController {
             responsibilityId: req.body.responsibilityId,
             users: req.body.users
         };        
-        TruckCareDatabase.createTruckCareOutcome(args);
+        Database.createTruckCareOutcome(args);
     }
 }
 

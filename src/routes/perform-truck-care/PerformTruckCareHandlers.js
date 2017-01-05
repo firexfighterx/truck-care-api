@@ -1,5 +1,5 @@
 class PerformTruckCareHandlers {
-    static handleCreateTruckCareOutcomeSuccess(users, database, res) {}
+    static handleCreateTruckCareOutcomeSuccess(users, res) {}
     static handleCreateTruckCareOutcomeFailure(res) {}
 }
 

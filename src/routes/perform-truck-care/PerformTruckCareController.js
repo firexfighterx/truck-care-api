@@ -1,6 +1,7 @@
 import Database from '../../database/truckCareDatabase';
 import Validator from './PerformTruckCareValidator';
 import Handlers from './PerformTruckCareHandlers';
+import * as HtmlCodes from '../../common/HtmlStatusCodes';
 
 class PerformTruckCareController {
     static performTruckCare(req, res) {
@@ -12,11 +13,12 @@ class PerformTruckCareController {
         };
         let isRequestValid = Validator.isRequestValid(args);
         if (isRequestValid) {
-            Database.createTruckCareOutcome(args, 
-            Handlers.handleCreateTruckCareOutcomeSuccess.bind(this, Database, res), 
-            Handlers.handleCreateTruckCareOutcomeFailure.bind(this, res));
+            Database.createTruckCareOutcome(args,
+                Handlers.handleCreateTruckCareOutcomeSuccess.bind(this, res),
+                Handlers.handleCreateTruckCareOutcomeFailure.bind(this, res));
+        } else {
+            res.sendStatus(HtmlCodes.UNPROCESSABLE_ENTITY);
         }
-
     }
 }
 

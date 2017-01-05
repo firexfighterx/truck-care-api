@@ -29,7 +29,7 @@ describe('PerformTruckCareController', () => {
                     truckId
                 }
             };
-            const res = {};
+            const res = {sendStatus: () => {}};
             const expectedArgs = {
                 outcome,
                 truckId,
@@ -67,7 +67,7 @@ describe('PerformTruckCareController', () => {
 
             let isRequestValid = sandbox.stub(Validator, 'isRequestValid').returns(false);
 
-            Controller.performTruckCare(req, {});
+            Controller.performTruckCare(req, {sendStatus: () => {}});
 
             assert(isRequestValid.withArgs(expectedArgs).calledOnce, 'called to perform validation');
         });
@@ -78,9 +78,19 @@ describe('PerformTruckCareController', () => {
 
             Controller.performTruckCare({
                 body: {}
-            }, {});
+            }, {sendStatus: () => {}});
 
             assert(createTruckCareOutcome.notCalled, 'createTruckCareOutcome was not called');
+        });
+
+        it('returns a status code of 422 when request is not valid', () => {
+            let actual;
+            const res = { sendStatus: (status) => {actual = status;}};
+            sandbox.stub(Validator, 'isRequestValid').returns(false);
+
+            Controller.performTruckCare({body:{}}, res);
+
+            assert.strictEqual(actual, 422, '422 status code was sent');
         });
     });
 });

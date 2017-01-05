@@ -15,7 +15,7 @@ var PerformTruckCareHandlers = function () {
 
     _createClass(PerformTruckCareHandlers, null, [{
         key: "handleCreateTruckCareOutcomeSuccess",
-        value: function handleCreateTruckCareOutcomeSuccess(users, database, res) {}
+        value: function handleCreateTruckCareOutcomeSuccess(users, res) {}
     }, {
         key: "handleCreateTruckCareOutcomeFailure",
         value: function handleCreateTruckCareOutcomeFailure(res) {}

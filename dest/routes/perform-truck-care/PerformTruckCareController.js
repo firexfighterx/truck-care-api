@@ -18,6 +18,12 @@ var _PerformTruckCareHandlers = require('./PerformTruckCareHandlers');
 
 var _PerformTruckCareHandlers2 = _interopRequireDefault(_PerformTruckCareHandlers);
 
+var _HtmlStatusCodes = require('../../common/HtmlStatusCodes');
+
+var HtmlCodes = _interopRequireWildcard(_HtmlStatusCodes);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -38,7 +44,9 @@ var PerformTruckCareController = function () {
             };
             var isRequestValid = _PerformTruckCareValidator2.default.isRequestValid(args);
             if (isRequestValid) {
-                _truckCareDatabase2.default.createTruckCareOutcome(args, _PerformTruckCareHandlers2.default.handleCreateTruckCareOutcomeSuccess.bind(this, _truckCareDatabase2.default, res), _PerformTruckCareHandlers2.default.handleCreateTruckCareOutcomeFailure.bind(this, res));
+                _truckCareDatabase2.default.createTruckCareOutcome(args, _PerformTruckCareHandlers2.default.handleCreateTruckCareOutcomeSuccess.bind(this, res), _PerformTruckCareHandlers2.default.handleCreateTruckCareOutcomeFailure.bind(this, res));
+            } else {
+                res.sendStatus(HtmlCodes.UNPROCESSABLE_ENTITY);
             }
         }
     }]);

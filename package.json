@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "gulp && node ./dest/main.js",
-    "test": "mocha --compilers js:babel-core/register src/tests/**/*Tests.js"
+    "test": "mocha --compilers js:babel-core/register src/tests/**/*Tests.js",
+    "test:watch": "mocha --watch --compilers js:babel-core/register src/tests/**/*Tests.js"
   },
   "author": "",
   "license": "ISC",

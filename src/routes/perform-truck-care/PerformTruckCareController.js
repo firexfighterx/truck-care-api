@@ -7,9 +7,12 @@ class PerformTruckCareController {
             truckId: req.body.truckId,
             responsibilityId: req.body.responsibilityId,
             users: req.body.users
-        };        
-        Database.createTruckCareOutcome(args);
-        Validator.isRequestValid(args);
+        };
+        let isRequestValid = Validator.isRequestValid(args);
+        if (isRequestValid) {
+            Database.createTruckCareOutcome(args);
+        }
+
     }
 }
 

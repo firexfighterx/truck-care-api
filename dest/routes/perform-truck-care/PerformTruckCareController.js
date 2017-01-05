@@ -32,8 +32,10 @@ var PerformTruckCareController = function () {
                 responsibilityId: req.body.responsibilityId,
                 users: req.body.users
             };
-            _truckCareDatabase2.default.createTruckCareOutcome(args);
-            _PerformTruckCareValidator2.default.isRequestValid(args);
+            var isRequestValid = _PerformTruckCareValidator2.default.isRequestValid(args);
+            if (isRequestValid) {
+                _truckCareDatabase2.default.createTruckCareOutcome(args);
+            }
         }
     }]);
 

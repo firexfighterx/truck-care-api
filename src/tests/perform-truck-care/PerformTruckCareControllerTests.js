@@ -35,7 +35,7 @@ describe('PerformTruckCareController', () => {
                 responsibilityId,
                 users
             };
-
+            sandbox.stub(Validator, 'isRequestValid').returns(true);
             let createTruckCareOutcome = sandbox.stub(Database, 'createTruckCareOutcome');
 
             Controller.performTruckCare(req, res);
@@ -60,11 +60,22 @@ describe('PerformTruckCareController', () => {
                 users
             };
 
-            let isRequestValid = sandbox.stub(Validator, 'isRequestValid');
+            let isRequestValid = sandbox.stub(Validator, 'isRequestValid').returns(false);
 
             Controller.performTruckCare(req, {});
 
             assert(isRequestValid.withArgs(expectedArgs).calledOnce, 'called to perform validation');
+        });
+
+        it('does not call Database when Validator returns false', () => {
+            sandbox.stub(Validator, 'isRequestValid').returns(false);
+            let createTruckCareOutcome = sandbox.stub(Database, 'createTruckCareOutcome');
+
+            Controller.performTruckCare({
+                body: {}
+            }, {});
+
+            assert(createTruckCareOutcome.notCalled, 'createTruckCareOutcome was not called');
         });
     });
 });

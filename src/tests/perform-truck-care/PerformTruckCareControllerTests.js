@@ -3,6 +3,7 @@ import sinon from 'sinon';
 import Controller from '../../routes/perform-truck-care/PerformTruckCareController';
 import Database from '../../database/truckCareDatabase';
 import Validator from '../../routes/perform-truck-care/PerformTruckCareValidator';
+import Handlers from '../../routes/perform-truck-care/PerformTruckCareHandlers';
 
 describe('PerformTruckCareController', () => {
     const truckId = 5;
@@ -35,12 +36,16 @@ describe('PerformTruckCareController', () => {
                 responsibilityId,
                 users
             };
+            const success = () => {};
+            const failure = () => {};
+            sandbox.stub(Handlers.handleCreateTruckCareOutcomeSuccess, 'bind').returns(success);
+            sandbox.stub(Handlers.handleCreateTruckCareOutcomeFailure, 'bind').returns(failure);
             sandbox.stub(Validator, 'isRequestValid').returns(true);
             let createTruckCareOutcome = sandbox.stub(Database, 'createTruckCareOutcome');
 
             Controller.performTruckCare(req, res);
 
-            assert(createTruckCareOutcome.withArgs(expectedArgs).calledOnce, 'called createTruckCareOutcome');
+            assert(createTruckCareOutcome.withArgs(expectedArgs, success, failure).calledOnce, 'called createTruckCareOutcome');
         });
 
         it('calls Validator to validate request', () => {

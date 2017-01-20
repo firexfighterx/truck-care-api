@@ -10,6 +10,16 @@ var _HtmlStatusCodes = require('../../common/HtmlStatusCodes');
 
 var StatusCodes = _interopRequireWildcard(_HtmlStatusCodes);
 
+var _truckCareDatabase = require('../../database/truckCareDatabase');
+
+var _truckCareDatabase2 = _interopRequireDefault(_truckCareDatabase);
+
+var _PerformTruckCareHandlers = require('../../routes/perform-truck-care/PerformTruckCareHandlers');
+
+var _PerformTruckCareHandlers2 = _interopRequireDefault(_PerformTruckCareHandlers);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -38,7 +48,15 @@ var PerformTruckCareValidator = function () {
 
     _createClass(PerformTruckCareValidator, null, [{
         key: 'isRequestValid',
-        value: function isRequestValid() {}
+        value: function isRequestValid(req, res, next) {
+            var args = {
+                truckId: req.body.truckId,
+                users: req.body.users,
+                responsibilityId: req.body.responsibilityId,
+                outcome: req.body.outcome
+            };
+            _truckCareDatabase2.default.isRequestValid(args, _PerformTruckCareHandlers2.default.handleIsRequestValidSuccess.bind(this, req, next), _PerformTruckCareHandlers2.default.handleIsRequestValidFailure.bind(res));
+        }
     }, {
         key: 'validateBodyParams',
         value: function validateBodyParams(req, res, next) {

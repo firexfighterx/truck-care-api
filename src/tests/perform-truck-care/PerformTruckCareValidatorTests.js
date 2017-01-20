@@ -1,6 +1,8 @@
 import assert from 'assert';
 import sinon from 'sinon';
 import Validator from '../../routes/perform-truck-care/PerformTruckCareValidator';
+import Database from '../../database/truckCareDatabase';
+import Handler from '../../routes/perform-truck-care/PerformTruckCareHandlers';
 
 describe('PerformTruckCareValidator', () => {
     let sandbox;
@@ -15,6 +17,36 @@ describe('PerformTruckCareValidator', () => {
 
     afterEach(() => {
         sandbox.restore();
+    });
+
+    describe('isRequestValid', () => {
+        it('calls doesResponsibilityBelongToTruck', () => {
+            const req = {body: {
+                truckId: 1, 
+                users: [1, 2], 
+                responsibilityId: 3,
+                outcome: true, 
+                foo: 'bar'
+            }};
+
+            const args = {
+                truckId: 1,
+                users: [1, 2], 
+                responsibilityId: 3, 
+                outcome: true
+            };
+            const res = {sendStatus: () => {}};
+            const next = () => {return true;};
+            const bound_success = () => {};
+            const bound_failure = () => {return false;};
+            sandbox.stub(Handler.handleIsRequestValidSuccess, 'bind').returns(bound_success);
+            sandbox.stub(Handler.handleIsRequestValidFailure, 'bind').returns(bound_failure);
+            let isRequestValid = sandbox.stub(Database, 'isRequestValid');
+
+            Validator.isRequestValid(req, res, next);
+
+            assert(isRequestValid.withArgs(args, bound_success, bound_failure).calledOnce, 'called database with args and callbacks');
+        });
     });
 
     describe('validateBodyParams', () => {

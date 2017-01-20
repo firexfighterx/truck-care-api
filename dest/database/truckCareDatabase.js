@@ -78,6 +78,9 @@ var TruckCareDatabase = function () {
                 truckId: args.truckId
             }).then(success).catch(failure);
         }
+    }, {
+        key: 'isRequestValid',
+        value: function isRequestValid(args, success, failure) {}
     }]);
 
     return TruckCareDatabase;

@@ -49,6 +49,8 @@ class TruckCareDatabase {
             truckId: args.truckId
         }).then(success).catch(failure);
     }
+
+    static isRequestValid(args, success, failure) {}
 }
 
 export default TruckCareDatabase;

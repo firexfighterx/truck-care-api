@@ -1,4 +1,6 @@
 import * as StatusCodes from '../../common/HtmlStatusCodes';
+import Database from '../../database/truckCareDatabase';
+import Handler from '../../routes/perform-truck-care/PerformTruckCareHandlers';
 
 const areFieldsValid = req => {
     return isValidArray(req.body.users)
@@ -25,12 +27,20 @@ const isValidBoolean = boolean => {
 };
 
 class PerformTruckCareValidator {
-    static isRequestValid() {}
+    static isRequestValid(req, res, next) {
+        const args = {
+            truckId: req.body.truckId,
+            users: req.body.users,
+            responsibilityId: req.body.responsibilityId,
+            outcome: req.body.outcome
+        };
+        Database.isRequestValid(args, Handler.handleIsRequestValidSuccess.bind(this, req, next), Handler.handleIsRequestValidFailure.bind(res));
+    }
     static validateBodyParams(req, res, next) {
         if (areFieldsValid(req)) {
             next();
         } else {
-           res.sendStatus(StatusCodes.BAD_REQUEST); 
+            res.sendStatus(StatusCodes.BAD_REQUEST);
         }
     }
 }

@@ -19,6 +19,12 @@ var PerformTruckCareHandlers = function () {
     }, {
         key: "handleCreateTruckCareOutcomeFailure",
         value: function handleCreateTruckCareOutcomeFailure(res) {}
+    }, {
+        key: "handleIsRequestValidSuccess",
+        value: function handleIsRequestValidSuccess() {}
+    }, {
+        key: "handleIsRequestValidFailure",
+        value: function handleIsRequestValidFailure() {}
     }]);
 
     return PerformTruckCareHandlers;

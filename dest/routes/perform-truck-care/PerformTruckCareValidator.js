@@ -18,6 +18,10 @@ var _PerformTruckCareHandlers = require('../../routes/perform-truck-care/Perform
 
 var _PerformTruckCareHandlers2 = _interopRequireDefault(_PerformTruckCareHandlers);
 
+var _PerformTruckCareRequestMapper = require('../../routes/perform-truck-care/PerformTruckCareRequestMapper');
+
+var _PerformTruckCareRequestMapper2 = _interopRequireDefault(_PerformTruckCareRequestMapper);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
@@ -49,12 +53,7 @@ var PerformTruckCareValidator = function () {
     _createClass(PerformTruckCareValidator, null, [{
         key: 'isRequestValid',
         value: function isRequestValid(req, res, next) {
-            var args = {
-                truckId: req.body.truckId,
-                users: req.body.users,
-                responsibilityId: req.body.responsibilityId,
-                outcome: req.body.outcome
-            };
+            var args = _PerformTruckCareRequestMapper2.default.mapBodyRequestParameters(req);
             _truckCareDatabase2.default.isRequestValid(args, _PerformTruckCareHandlers2.default.handleIsRequestValidSuccess.bind(this, req, next), _PerformTruckCareHandlers2.default.handleIsRequestValidFailure.bind(res));
         }
     }, {

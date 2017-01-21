@@ -3,6 +3,7 @@ import sinon from 'sinon';
 import Validator from '../../routes/perform-truck-care/PerformTruckCareValidator';
 import Database from '../../database/truckCareDatabase';
 import Handler from '../../routes/perform-truck-care/PerformTruckCareHandlers';
+import Mapper from '../../routes/perform-truck-care/PerformTruckCareRequestMapper';
 
 describe('PerformTruckCareValidator', () => {
     let sandbox;
@@ -20,32 +21,51 @@ describe('PerformTruckCareValidator', () => {
     });
 
     describe('isRequestValid', () => {
-        it('calls doesResponsibilityBelongToTruck', () => {
-            const req = {body: {
-                truckId: 1, 
-                users: [1, 2], 
-                responsibilityId: 3,
-                outcome: true, 
-                foo: 'bar'
-            }};
+        it('calls database to determine if request is valid', () => {
+            const req = {
+                body: {}
+            };
 
             const args = {
-                truckId: 1,
-                users: [1, 2], 
-                responsibilityId: 3, 
-                outcome: true
+                someField: 'doesnt matter',
+                foo: 'bar'
             };
-            const res = {sendStatus: () => {}};
-            const next = () => {return true;};
+            const res = {
+                sendStatus: () => {}
+            };
+            const next = () => {
+                return true;
+            };
             const bound_success = () => {};
-            const bound_failure = () => {return false;};
+            const bound_failure = () => {
+                return false;
+            };
             sandbox.stub(Handler.handleIsRequestValidSuccess, 'bind').returns(bound_success);
             sandbox.stub(Handler.handleIsRequestValidFailure, 'bind').returns(bound_failure);
+            sandbox.stub(Mapper, 'mapBodyRequestParameters').returns(args);
             let isRequestValid = sandbox.stub(Database, 'isRequestValid');
 
             Validator.isRequestValid(req, res, next);
 
             assert(isRequestValid.withArgs(args, bound_success, bound_failure).calledOnce, 'called database with args and callbacks');
+        });
+
+        it('calls Mapper to map body arguments', () => {
+            const body = {
+                someField: 'doesnt matter',
+                foo: 'bar'
+            };
+            const req = {
+                body
+            };
+
+            let mapBodyRequestParameters = sandbox.stub(Mapper, 'mapBodyRequestParameters');
+            sandbox.stub(Database, 'isRequestValid');
+
+            Validator.isRequestValid(req, {}, () => {});
+
+            assert(mapBodyRequestParameters.withArgs(req).calledOnce, 'called mapper to map body arguments');
+
         });
     });
 

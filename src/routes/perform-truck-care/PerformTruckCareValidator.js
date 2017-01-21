@@ -1,39 +1,35 @@
 import * as StatusCodes from '../../common/HtmlStatusCodes';
 import Database from '../../database/truckCareDatabase';
 import Handler from '../../routes/perform-truck-care/PerformTruckCareHandlers';
+import Mapper from '../../routes/perform-truck-care/PerformTruckCareRequestMapper';
 
 const areFieldsValid = req => {
-    return isValidArray(req.body.users)
-    && isValidNumeric(req.body.truckId)
-    && isValidNumeric(req.body.responsibilityId)
-    && isValidBoolean(req.body.outcome);
+    return isValidArray(req.body.users) &&
+        isValidNumeric(req.body.truckId) &&
+        isValidNumeric(req.body.responsibilityId) &&
+        isValidBoolean(req.body.outcome);
 };
 
 const isValidArray = list => {
 
-    return Array.isArray(list) 
-    && list 
-    && list.length !== 0;
+    return Array.isArray(list) &&
+        list &&
+        list.length !== 0;
 };
 
 const isValidNumeric = numericId => {
-    return typeof numericId === 'number'
-    && numericId > 0;
+    return typeof numericId === 'number' &&
+        numericId > 0;
 };
 
 const isValidBoolean = boolean => {
-    return typeof boolean === 'boolean'
-    && boolean !== undefined;
+    return typeof boolean === 'boolean' &&
+        boolean !== undefined;
 };
 
 class PerformTruckCareValidator {
     static isRequestValid(req, res, next) {
-        const args = {
-            truckId: req.body.truckId,
-            users: req.body.users,
-            responsibilityId: req.body.responsibilityId,
-            outcome: req.body.outcome
-        };
+        let args = Mapper.mapBodyRequestParameters(req);
         Database.isRequestValid(args, Handler.handleIsRequestValidSuccess.bind(this, req, next), Handler.handleIsRequestValidFailure.bind(res));
     }
     static validateBodyParams(req, res, next) {

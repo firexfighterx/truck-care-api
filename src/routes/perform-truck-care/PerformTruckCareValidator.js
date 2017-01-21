@@ -4,14 +4,14 @@ import Handler from '../../routes/perform-truck-care/PerformTruckCareHandlers';
 import Mapper from '../../routes/perform-truck-care/PerformTruckCareRequestMapper';
 
 const areFieldsValid = req => {
-    return isValidArray(req.body.users) &&
+    return req.body &&
+        isValidArray(req.body.users) &&
         isValidNumeric(req.body.truckId) &&
         isValidNumeric(req.body.responsibilityId) &&
         isValidBoolean(req.body.outcome);
 };
 
 const isValidArray = list => {
-
     return Array.isArray(list) &&
         list &&
         list.length !== 0;
@@ -32,6 +32,7 @@ class PerformTruckCareValidator {
         let args = Mapper.mapBodyRequestParameters(req);
         Database.isRequestValid(args, Handler.handleIsRequestValidSuccess.bind(this, req, next), Handler.handleIsRequestValidFailure.bind(res));
     }
+
     static validateBodyParams(req, res, next) {
         if (areFieldsValid(req)) {
             next();

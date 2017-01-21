@@ -86,6 +86,17 @@ describe('PerformTruckCareValidator', () => {
             assert(next.calledOnce, 'called the next function');
         });
 
+        it('returns a 400 status code when body is missing', () => {
+            const req = {};
+            const res = {
+                sendStatus
+            };
+            Validator.validateBodyParams(req, res, next);
+
+            assert(next.notCalled, 'did not call next');
+            assert(sendStatus.withArgs(400).calledOnce, 'called sendStatus with a 400');
+        });
+
         it('returns a 400 status code when users list is empty', () => {
             let body = {
                 users: [],

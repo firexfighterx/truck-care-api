@@ -29,11 +29,10 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var areFieldsValid = function areFieldsValid(req) {
-    return isValidArray(req.body.users) && isValidNumeric(req.body.truckId) && isValidNumeric(req.body.responsibilityId) && isValidBoolean(req.body.outcome);
+    return req.body && isValidArray(req.body.users) && isValidNumeric(req.body.truckId) && isValidNumeric(req.body.responsibilityId) && isValidBoolean(req.body.outcome);
 };
 
 var isValidArray = function isValidArray(list) {
-
     return Array.isArray(list) && list && list.length !== 0;
 };
 

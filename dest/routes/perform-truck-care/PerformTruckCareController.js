@@ -10,19 +10,13 @@ var _truckCareDatabase = require('../../database/truckCareDatabase');
 
 var _truckCareDatabase2 = _interopRequireDefault(_truckCareDatabase);
 
-var _PerformTruckCareValidator = require('./PerformTruckCareValidator');
-
-var _PerformTruckCareValidator2 = _interopRequireDefault(_PerformTruckCareValidator);
-
 var _PerformTruckCareHandlers = require('./PerformTruckCareHandlers');
 
 var _PerformTruckCareHandlers2 = _interopRequireDefault(_PerformTruckCareHandlers);
 
-var _HtmlStatusCodes = require('../../common/HtmlStatusCodes');
+var _PerformTruckCareRequestMapper = require('./PerformTruckCareRequestMapper');
 
-var HtmlCodes = _interopRequireWildcard(_HtmlStatusCodes);
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+var _PerformTruckCareRequestMapper2 = _interopRequireDefault(_PerformTruckCareRequestMapper);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -36,18 +30,9 @@ var PerformTruckCareController = function () {
     _createClass(PerformTruckCareController, null, [{
         key: 'performTruckCare',
         value: function performTruckCare(req, res) {
-            var args = {
-                outcome: req.body.outcome,
-                truckId: req.body.truckId,
-                responsibilityId: req.body.responsibilityId,
-                users: req.body.users
-            };
-            var isRequestValid = _PerformTruckCareValidator2.default.isRequestValid(args);
-            if (isRequestValid) {
-                _truckCareDatabase2.default.createTruckCareOutcome(args, _PerformTruckCareHandlers2.default.handleCreateTruckCareOutcomeSuccess.bind(this, res), _PerformTruckCareHandlers2.default.handleCreateTruckCareOutcomeFailure.bind(this, res));
-            } else {
-                res.sendStatus(HtmlCodes.UNPROCESSABLE_ENTITY);
-            }
+            var args = _PerformTruckCareRequestMapper2.default.mapBodyRequestParameters(req);
+
+            _truckCareDatabase2.default.createTruckCareOutcome(args, _PerformTruckCareHandlers2.default.handleCreateTruckCareOutcomeSuccess.bind(this, res), _PerformTruckCareHandlers2.default.handleCreateTruckCareOutcomeFailure.bind(this, res));
         }
     }]);
 

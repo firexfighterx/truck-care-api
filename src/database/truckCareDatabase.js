@@ -50,7 +50,14 @@ class TruckCareDatabase {
         }).then(success).catch(failure);
     }
 
-    static isRequestValid(args, success, failure) {}
+    static isRequestValid(args, success, failure) {
+        let dbCalls = [
+            db.select('userId').from('active_user').whereIn(args.users),
+            db('responsibility').count('* as count').where({truckId: args.truckId, responsibilityId: args.responsibilityId})
+        ];
+
+        Promise.all(dbCalls).then(success).catch(failure);
+    }
 }
 
 export default TruckCareDatabase;

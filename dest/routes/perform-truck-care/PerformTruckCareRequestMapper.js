@@ -15,7 +15,14 @@ var PerformTruckCareRequestMapper = function () {
 
     _createClass(PerformTruckCareRequestMapper, null, [{
         key: "mapBodyRequestParameters",
-        value: function mapBodyRequestParameters() {}
+        value: function mapBodyRequestParameters(req) {
+            return {
+                truckId: req.body.truckId,
+                users: req.body.users,
+                responsibilityId: req.body.responsibilityId,
+                outcome: req.body.outcome
+            };
+        }
     }]);
 
     return PerformTruckCareRequestMapper;

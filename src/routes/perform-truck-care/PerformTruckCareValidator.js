@@ -30,7 +30,7 @@ const isValidBoolean = boolean => {
 class PerformTruckCareValidator {
     static isRequestValid(req, res, next) {
         let args = Mapper.mapBodyRequestParameters(req);
-        Database.isRequestValid(args, Handler.handleIsRequestValidSuccess.bind(this, req, next), Handler.handleIsRequestValidFailure.bind(res));
+        Database.isRequestValid(args, Handler.handleIsRequestValidSuccess.bind(this, next), Handler.handleIsRequestValidFailure.bind(res));
     }
 
     static validateBodyParams(req, res, next) {

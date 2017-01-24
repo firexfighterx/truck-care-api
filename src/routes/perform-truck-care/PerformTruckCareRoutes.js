@@ -1,6 +1,13 @@
 import express from 'express';
-import PerformTruckCareController from './PerformTruckCareController';
+import Validator from './PerformTruckCareValidator';
+import Controller from './PerformTruckCareController';
 const router = express.Router();
 
-router.post('/perform/truckcare', PerformTruckCareController.performTruckCare);
+let performTruckCareMethods = [
+    Validator.validateBodyParams,
+    Validator.isRequestValid,
+    Controller.performTruckCare
+];
+
+router.post('/perform/truckcare', performTruckCareMethods);
 export default router;

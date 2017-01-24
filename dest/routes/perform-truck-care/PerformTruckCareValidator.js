@@ -53,7 +53,7 @@ var PerformTruckCareValidator = function () {
         key: 'isRequestValid',
         value: function isRequestValid(req, res, next) {
             var args = _PerformTruckCareRequestMapper2.default.mapBodyRequestParameters(req);
-            _truckCareDatabase2.default.isRequestValid(args, _PerformTruckCareHandlers2.default.handleIsRequestValidSuccess.bind(this, next), _PerformTruckCareHandlers2.default.handleIsRequestValidFailure.bind(res));
+            _truckCareDatabase2.default.isRequestValid(args, _PerformTruckCareHandlers2.default.handleIsRequestValidSuccess.bind(this, args.users, res, next), _PerformTruckCareHandlers2.default.handleIsRequestValidFailure.bind(res));
         }
     }, {
         key: 'validateBodyParams',

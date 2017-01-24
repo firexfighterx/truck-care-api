@@ -58,8 +58,7 @@ describe('PerformTruckCareValidator', () => {
             const req = {
                 body
             };
-
-            let mapBodyRequestParameters = sandbox.stub(Mapper, 'mapBodyRequestParameters');
+            let mapBodyRequestParameters = sandbox.stub(Mapper, 'mapBodyRequestParameters').returns({users: []});
             sandbox.stub(Database, 'isRequestValid');
 
             Validator.isRequestValid(req, {}, () => {});

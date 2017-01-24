@@ -31,8 +31,14 @@ var PerformTruckCareHandlers = function () {
         }
     }, {
         key: 'handleIsRequestValidSuccess',
-        value: function handleIsRequestValidSuccess(next) {
-            next();
+        value: function handleIsRequestValidSuccess(users, res, next, results) {
+            var activeUsersResults = results[0];
+
+            if (activeUsersResults.length == 0 || activeUsersResults.length < users.length) {
+                res.sendStatus(StatusCodes.UNPROCESSABLE_ENTITY);
+            } else {
+                next();
+            }
         }
     }, {
         key: 'handleIsRequestValidFailure',

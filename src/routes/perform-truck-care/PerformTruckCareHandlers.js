@@ -7,8 +7,15 @@ class PerformTruckCareHandlers {
         res.sendStatus(StatusCodes.UNPROCESSABLE_ENTITY);
     }
 
-    static handleIsRequestValidSuccess(next) {
-        next();
+    static handleIsRequestValidSuccess(users, res, next, results) {
+        let activeUsersResults = results[0];
+
+        if (activeUsersResults.length == 0 ||
+            activeUsersResults.length < users.length) {
+            res.sendStatus(StatusCodes.UNPROCESSABLE_ENTITY);
+        } else {
+            next();
+        }
     }
     static handleIsRequestValidFailure(res) {
         res.sendStatus(StatusCodes.UNPROCESSABLE_ENTITY);

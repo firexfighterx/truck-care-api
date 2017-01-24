@@ -52,7 +52,7 @@ class TruckCareDatabase {
 
     static isRequestValid(args, success, failure) {
         let dbCalls = [
-            db.select('userId').from('active_user').whereIn(args.users),
+            db.select('userId').from('active_user').whereIn('userId', args.users),
             db('responsibility').count('* as count').where({truckId: args.truckId, responsibilityId: args.responsibilityId})
         ];
 

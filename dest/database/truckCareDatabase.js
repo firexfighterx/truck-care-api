@@ -81,7 +81,7 @@ var TruckCareDatabase = function () {
     }, {
         key: 'isRequestValid',
         value: function isRequestValid(args, success, failure) {
-            var dbCalls = [db.select('userId').from('active_user').whereIn(args.users), db('responsibility').count('* as count').where({ truckId: args.truckId, responsibilityId: args.responsibilityId })];
+            var dbCalls = [db.select('userId').from('active_user').whereIn('userId', args.users), db('responsibility').count('* as count').where({ truckId: args.truckId, responsibilityId: args.responsibilityId })];
 
             Promise.all(dbCalls).then(success).catch(failure);
         }

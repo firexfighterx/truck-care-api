@@ -9,9 +9,11 @@ class PerformTruckCareHandlers {
 
     static handleIsRequestValidSuccess(users, res, next, results) {
         let activeUsersResults = results[0];
+        let isInValidResponsibilityId = results[1][0].count == 0;
 
-        if (activeUsersResults.length == 0 ||
-            activeUsersResults.length < users.length) {
+        if (activeUsersResults.length == 0 
+        || activeUsersResults.length < users.length 
+        || isInValidResponsibilityId) {
             res.sendStatus(StatusCodes.UNPROCESSABLE_ENTITY);
         } else {
             next();

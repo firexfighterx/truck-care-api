@@ -33,8 +33,9 @@ var PerformTruckCareHandlers = function () {
         key: 'handleIsRequestValidSuccess',
         value: function handleIsRequestValidSuccess(users, res, next, results) {
             var activeUsersResults = results[0];
+            var isInValidResponsibilityId = results[1][0].count == 0;
 
-            if (activeUsersResults.length == 0 || activeUsersResults.length < users.length) {
+            if (activeUsersResults.length == 0 || activeUsersResults.length < users.length || isInValidResponsibilityId) {
                 res.sendStatus(StatusCodes.UNPROCESSABLE_ENTITY);
             } else {
                 next();

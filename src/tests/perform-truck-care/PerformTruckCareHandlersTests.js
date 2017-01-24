@@ -95,6 +95,24 @@ describe('PerformTruckCareHandlers', () => {
             assert(next.notCalled, 'next not called');
         });
 
+        it('returns a 422 when count is zero', () => {
+            const users = [1, 2];
+            const results = [
+                [1, 2],
+                [{
+                    count: 0
+                }]
+            ];
+            const res = {
+                sendStatus
+            };
+
+            Handler.handleIsRequestValidSuccess(users, res, next, results);
+
+            assert(sendStatus.withArgs(422).calledOnce, 'called sendStatus with 422');
+            assert(next.notCalled, 'next not called');
+        });
+
     });
 
     describe('handleIsRequestValidFailure', () => {

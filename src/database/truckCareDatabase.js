@@ -47,6 +47,11 @@ class TruckCareDatabase {
             datePerformed: new Date(),
             responsibilityId: args.responsibilityId,
             truckId: args.truckId
+        }).then(id => {
+            let users = args.users.map(user => {
+                return {userId: user, outcomeId: id[0]}
+            });
+            return db('outcomeUsers').insert(users);
         }).then(success).catch(failure);
     }
 

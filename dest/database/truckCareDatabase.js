@@ -76,6 +76,11 @@ var TruckCareDatabase = function () {
                 datePerformed: new Date(),
                 responsibilityId: args.responsibilityId,
                 truckId: args.truckId
+            }).then(function (id) {
+                var users = args.users.map(function (user) {
+                    return { userId: user, outcomeId: id[0] };
+                });
+                return db('outcomeUsers').insert(users);
             }).then(success).catch(failure);
         }
     }, {

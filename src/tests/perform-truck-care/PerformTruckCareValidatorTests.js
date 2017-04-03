@@ -31,12 +31,12 @@ describe('PerformTruckCareValidator', () => {
                 foo: 'bar'
             };
             const res = {
-                sendStatus: () => {}
+                sendStatus: () => { }
             };
             const next = () => {
                 return true;
             };
-            const bound_success = () => {};
+            const bound_success = () => { };
             const bound_failure = () => {
                 return false;
             };
@@ -58,10 +58,10 @@ describe('PerformTruckCareValidator', () => {
             const req = {
                 body
             };
-            let mapBodyRequestParameters = sandbox.stub(Mapper, 'mapBodyRequestParameters').returns({users: []});
+            let mapBodyRequestParameters = sandbox.stub(Mapper, 'mapBodyRequestParameters').returns({ users: [] });
             sandbox.stub(Database, 'isRequestValid');
 
-            Validator.isRequestValid(req, {}, () => {});
+            Validator.isRequestValid(req, {}, () => { });
 
             assert(mapBodyRequestParameters.withArgs(req).calledOnce, 'called mapper to map body arguments');
 
@@ -73,8 +73,9 @@ describe('PerformTruckCareValidator', () => {
             let body = {
                 users: [1],
                 truckId: 1,
-                outcome: true,
-                responsibilityId: 3
+                outcome: false,
+                responsibilityId: 3,
+                outcomeReason: "some bad reason"
             };
             const req = {
                 body
@@ -282,7 +283,7 @@ describe('PerformTruckCareValidator', () => {
         });
 
 
-        it('returns a 400 status code when array is wrong type', () => {
+        it('returns a 400 status code when outcome is wrong type', () => {
             let body = {
                 users: [1],
                 truckId: 2,
@@ -298,6 +299,61 @@ describe('PerformTruckCareValidator', () => {
             };
 
             Validator.validateBodyParams(req, res, next);
+            assert(next.notCalled, 'did not call next');
+            assert(sendStatus.withArgs(400).calledOnce, 'called sendStatus with 400');
+        });
+
+        it('returns a 400 status code when outcome is false and outcomeReason is not provided', () => {
+            let body = {
+                users: [1],
+                truckId: 2,
+                outcome: false,
+                responsibilityId: 1
+            };
+
+            const req = { body };
+            const res = { sendStatus };
+
+            Validator.validateBodyParams(req, res, next);
+
+            assert(next.notCalled, 'did not call next');
+            assert(sendStatus.withArgs(400).calledOnce, 'called sendStatus with 400');
+        });
+
+        it('returns a 400 status code when outcome is false and outcomeReason is greater than 500 characters', () => {
+            const outcomeReason = 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempo';
+            let body = {
+                users: [1],
+                truckId: 2,
+                outcome: false,
+                responsibilityId: 1, 
+                outcomeReason
+            };
+
+            const req = { body };
+            const res = { sendStatus };
+
+            Validator.validateBodyParams(req, res, next);
+
+            assert(next.notCalled, 'did not call next');
+            assert(sendStatus.withArgs(400).calledOnce, 'called sendStatus with 400');
+        });
+
+        it('returns a 400 status code when outcome is false and outcomeReason contains invalid values', () => {
+            const outcomeReason = 'Sed ut perspiciatis unde omnis iste natus <script> <html> </script> alert(\'hello\'); ';
+            let body = {
+                users: [1],
+                truckId: 2,
+                outcome: false,
+                responsibilityId: 1, 
+                outcomeReason
+            };
+
+            const req = { body };
+            const res = { sendStatus };
+
+            Validator.validateBodyParams(req, res, next);
+
             assert(next.notCalled, 'did not call next');
             assert(sendStatus.withArgs(400).calledOnce, 'called sendStatus with 400');
         });

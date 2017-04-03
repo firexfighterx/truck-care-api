@@ -29,7 +29,9 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var areFieldsValid = function areFieldsValid(req) {
-    return req.body && isValidArray(req.body.users) && isValidNumeric(req.body.truckId) && isValidNumeric(req.body.responsibilityId) && isValidBoolean(req.body.outcome);
+    var body = req.body;
+
+    return body && isValidArray(body.users) && isValidNumeric(body.truckId) && isValidNumeric(body.responsibilityId) && isValidBoolean(body.outcome) && isValidOutcomeReason(body.outcome, body.outcomeReason);
 };
 
 var isValidArray = function isValidArray(list) {
@@ -42,6 +44,14 @@ var isValidNumeric = function isValidNumeric(numericId) {
 
 var isValidBoolean = function isValidBoolean(boolean) {
     return typeof boolean === 'boolean' && boolean !== undefined;
+};
+
+var doesNotContainHtmlCharacters = function doesNotContainHtmlCharacters(reason) {
+    return !reason.match('<("[^"]*"|\'[^\']*\'|[^\'">])*>');
+};
+
+var isValidOutcomeReason = function isValidOutcomeReason(outcome, outcomeReason) {
+    return outcome ? outcome : outcomeReason && outcomeReason.length <= 500 && doesNotContainHtmlCharacters(outcomeReason);
 };
 
 var PerformTruckCareValidator = function () {

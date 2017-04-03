@@ -4,11 +4,14 @@ import Handler from '../../routes/perform-truck-care/PerformTruckCareHandlers';
 import Mapper from '../../routes/perform-truck-care/PerformTruckCareRequestMapper';
 
 const areFieldsValid = req => {
-    return req.body &&
-        isValidArray(req.body.users) &&
-        isValidNumeric(req.body.truckId) &&
-        isValidNumeric(req.body.responsibilityId) &&
-        isValidBoolean(req.body.outcome);
+    let body = req.body;
+
+    return body &&
+        isValidArray(body.users) &&
+        isValidNumeric(body.truckId) &&
+        isValidNumeric(body.responsibilityId) &&
+        isValidBoolean(body.outcome) &&
+        isValidOutcomeReason(body.outcome, body.outcomeReason);
 };
 
 const isValidArray = list => {
@@ -25,6 +28,18 @@ const isValidNumeric = numericId => {
 const isValidBoolean = boolean => {
     return typeof boolean === 'boolean' &&
         boolean !== undefined;
+};
+
+const doesNotContainHtmlCharacters = reason => {
+    return !reason.match('<("[^"]*"|\'[^\']*\'|[^\'">])*>');
+};
+
+const isValidOutcomeReason = (outcome, outcomeReason) => {
+    return outcome ? 
+    outcome 
+    : outcomeReason 
+    && outcomeReason.length <= 500 
+    && doesNotContainHtmlCharacters(outcomeReason);
 };
 
 class PerformTruckCareValidator {

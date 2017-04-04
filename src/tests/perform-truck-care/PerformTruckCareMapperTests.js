@@ -8,7 +8,8 @@ describe('PerformTruckCareRequestMapper', () => {
                 truckId: 1,
                 responsibilityId: 2,
                 users: [1, 2],
-                outcome: true,
+                outcome: false,
+                outcomeReason: 'some outcome reason',
                 foo: 'bar'
             };
 
@@ -16,7 +17,8 @@ describe('PerformTruckCareRequestMapper', () => {
                 truckId: 1,
                 responsibilityId: 2,
                 users: [1, 2],
-                outcome: true
+                outcome: false,
+                outcomeReason: 'some outcome reason'
             };
 
             const req = {

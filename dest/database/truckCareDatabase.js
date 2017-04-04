@@ -80,7 +80,13 @@ var TruckCareDatabase = function () {
                 var users = args.users.map(function (user) {
                     return { userId: user, outcomeId: id[0] };
                 });
-                return db('outcomeUsers').insert(users);
+
+                var additionalTablesToUpdate = [db('outcomeUsers').insert(users)];
+
+                if (!args.outcome) {
+                    additionalTablesToUpdate.push(db('errorOutcomeDetail').insert({ outcomeId: id[0], detail: args.outcomeReason }));
+                }
+                return Promise.all(additionalTablesToUpdate);
             }).then(success).catch(failure);
         }
     }, {

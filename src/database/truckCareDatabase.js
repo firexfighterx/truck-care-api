@@ -51,7 +51,15 @@ class TruckCareDatabase {
             let users = args.users.map(user => {
                 return {userId: user, outcomeId: id[0]}
             });
-            return db('outcomeUsers').insert(users);
+
+            let additionalTablesToUpdate = [
+                db('outcomeUsers').insert(users)
+            ];
+
+            if(!args.outcome){
+                additionalTablesToUpdate.push(db('errorOutcomeDetail').insert({outcomeId: id[0], detail: args.outcomeReason}));
+            }
+            return Promise.all(additionalTablesToUpdate);
         }).then(success).catch(failure);
     }
 
